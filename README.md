@@ -12,7 +12,7 @@ A postgres database and a user is required
 
 ### 2. Run migrations
 ```shell
-cd project
+cd chattr
 python manage.py makemigrations
 python manage.py migrate
 ```
