@@ -1,9 +1,17 @@
-### 0. Python preparation
+### 0.0. Python preparation
 ```shell
 python -m venv venv
 . venv/bin/activate
 
 pip install -r requirements/prod.txt
+```
+
+### 0.1 React preparation   
+Install Node.js, then run
+```shell
+cd .\chattr\chattr-react
+npm install
+npm run build
 ```
 
 ### 1. Configure environment variables
