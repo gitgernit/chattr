@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
+
 import dotenv
 
 # Build paths inside the chattr like this: BASE_DIR / 'subdir'.
@@ -41,6 +42,7 @@ INTERNAL_IPS = os.getenv('DJANGO_ALLOWED_HOSTS', default='').split()
 DB_NAME = os.getenv('POSTGRES_NAME')
 DB_USER = os.getenv('POSTGRES_USER')
 DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
+REDIS_HOST = os.getenv('REDIS_HOST', default='localhost')
 
 
 # Application definition
@@ -52,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -69,9 +72,7 @@ ROOT_URLCONF = 'chattr.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'chattr-react/dist/'
-        ],
+        'DIRS': [BASE_DIR / 'chattr-react/dist/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
