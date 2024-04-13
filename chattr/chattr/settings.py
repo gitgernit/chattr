@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
+
 import dotenv
 
 # Build paths inside the chattr like this: BASE_DIR / 'subdir'.
@@ -26,12 +27,7 @@ dotenv.load_dotenv()
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', default='NOTSET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-true_values = (
-    'true',
-    't',
-    'y',
-    '1',
-)
+true_values = ('true', 't', 'y', '1')
 DEBUG = os.getenv('DJANGO_DEBUG', default='False').lower() in true_values
 
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', default='*').split()
@@ -69,9 +65,7 @@ ROOT_URLCONF = 'chattr.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'chattr-react/dist/'
-        ],
+        'DIRS': [BASE_DIR / 'chattr-react/dist/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,25 +90,30 @@ DATABASES = {
         'NAME': DB_NAME,
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
-    }
+    },
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation'
+            '.UserAttributeSimilarityValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.MinimumLengthValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.CommonPasswordValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.NumericPasswordValidator'
+        ),
     },
 ]
 
@@ -138,9 +137,7 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'chattr-react/dist/static/',
-]
+STATICFILES_DIRS = [BASE_DIR / 'chattr-react/dist/static/']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

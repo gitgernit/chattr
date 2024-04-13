@@ -1,0 +1,8 @@
+[flake8]
+exclude =
+    migrations
+    venv
+    node_modules
+max-complexity = 10
+import-order-style = google
+application_import_names = chattr

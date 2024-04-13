@@ -4,5 +4,8 @@ import django.views.generic
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', django.views.generic.TemplateView.as_view(template_name='index.html'))
+    path(
+        '',
+        django.views.generic.TemplateView.as_view(template_name='index.html'),
+    ),
 ]
