@@ -1,0 +1,45 @@
+stages:
+   - linting
+
+default:
+  image: python:3.12
+  before_script:
+    - pip install -r requirements/lint.txt
+
+black:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/black:latest
+  script:
+    - black --check .
+
+flake8:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/flake8:latest
+  script:
+    - flake8 --show-source --statistics .
+
+ruff:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/ruff:latest
+  script:
+    - ruff check .
+
+isort:
+  stage: linting
+  image: python:3.12
+  script:
+    - isort --check .
+
+djlint:
+  stage: linting
+  image: python:3.12
+  script:
+    - djlint .
+
+eslint:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/eslint:latest
+  before_script:
+    - cd chattr/chattr-react
+  script:
+    - eslint --ext .jsx
