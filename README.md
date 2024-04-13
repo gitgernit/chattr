@@ -15,7 +15,7 @@ npm run build
 ```
 
 ### 1. Configure environment variables
-A postgres database and a user is required  
+A postgres database, its owner (a user) and a Redis database are required  
 `cp .env.template .env`, configure the variables
 
 ### 2. Run migrations

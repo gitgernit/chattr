@@ -38,6 +38,8 @@ DB_NAME = os.getenv('POSTGRES_NAME')
 DB_USER = os.getenv('POSTGRES_USER')
 DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 
+REDIS_HOST = os.getenv('REDIS_HOST', default='localhost')
+
 
 # Application definition
 
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
