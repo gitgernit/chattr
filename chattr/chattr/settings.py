@@ -38,8 +38,8 @@ DB_NAME = os.getenv('POSTGRES_NAME')
 DB_USER = os.getenv('POSTGRES_USER')
 DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 
-REDIS_HOST = os.getenv('REDIS_HOST', default='localhost')
-
+REDIS_HOST = os.getenv('REDIS_HOST', default='127.0.0.1:6379')
+REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
 
 # Application definition
 
@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+] + [
+    'homepage.apps.HomepageConfig',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chattr.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -93,6 +94,17 @@ DATABASES = {
         'NAME': DB_NAME,
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
+    },
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': f'redis://{REDIS_HOST}/0',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'PASSWORD': REDIS_PASSWORD,
+        },
     },
 }
 
@@ -120,7 +132,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -131,7 +142,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
