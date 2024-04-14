@@ -5,7 +5,6 @@ import django.views.generic
 
 import api.urls
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(
