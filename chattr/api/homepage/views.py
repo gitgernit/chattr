@@ -2,12 +2,13 @@ __all__ = []
 
 import uuid
 
-import django.conf
-import redis
+import django.core.cache
 import rest_framework.response
 import rest_framework.views
 
 import api.homepage.serializers
+
+redis_client = django.core.cache.cache.client.get_client()
 
 
 class NewRoom(rest_framework.views.APIView):
@@ -20,11 +21,6 @@ class NewRoom(rest_framework.views.APIView):
             room_settings = serializer.validated_data
             room_id = uuid.uuid4().hex
 
-            redis_client = redis.Redis(
-                host=django.conf.settings.REDIS_HOST,
-                port=6379,
-                db=0,
-            )
             redis_client.hset(room_id, mapping=room_settings)
 
             return rest_framework.response.Response(
