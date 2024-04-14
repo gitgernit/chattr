@@ -5,4 +5,4 @@ exclude =
     node_modules
 max-complexity = 10
 import-order-style = google
-application_import_names = chattr, rooms
+application_import_names = chattr, api

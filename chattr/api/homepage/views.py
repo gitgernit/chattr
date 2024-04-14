@@ -7,12 +7,12 @@ import redis
 import rest_framework.response
 import rest_framework.views
 
-import rooms.serializers
+import api.homepage.serializers
 
 
 class NewRoom(rest_framework.views.APIView):
     def get(self, request):
-        serializer = rooms.serializers.RoomSettingsSerializer(
+        serializer = api.homepage.serializers.RoomSettingsSerializer(
             data=request.query_params,
         )
 
