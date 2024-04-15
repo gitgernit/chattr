@@ -11,5 +11,6 @@ urlpatterns = [
     rest_framework.urls.path(
         'homepage/',
         django.urls.include(api.homepage.urls),
+        name='homepage',
     ),
 ]

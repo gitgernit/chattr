@@ -36,10 +36,17 @@ djlint:
   script:
     - djlint .
 
+test:
+  stage: test
+  image: python:3.12
+  script:
+    - cd chattr
+    - python3 manage.py test
+
 eslint:
   stage: linting
   image: registry.gitlab.com/pipeline-components/eslint:latest
   before_script:
-    - cd chattr/chattr-react
+    - cd chattr-react
   script:
     - eslint --ext .jsx
