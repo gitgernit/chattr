@@ -20,5 +20,6 @@ flake8-use-pathlib==0.3.0
 flake8==7.0.0
 flake8_implicit_str_concat===0.4.0
 isort==5.13.2
+parameterized==0.9.0
 pep8-naming==0.13.3
 ruff==0.2.1
