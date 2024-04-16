@@ -7,6 +7,6 @@ app_name = 'api_homepage'
 urlpatterns = [
     rest_framework.urls.path(
         'get_room/',
-        api.homepage.views.NewRoom.as_view()
+        api.homepage.views.NewRoom.as_view(),
     ),
 ]
