@@ -33,9 +33,9 @@ function Header() {
       <span id="app-name">
         chattr
       </span>
-      <img id="theme-image"
-           src="/src/assets/theme-button.svg" alt="Theme change"
-           onClick={changeTheme}/>
+      <input type="image" id="theme-button"
+             onClick={changeTheme}
+             src="/src/assets/theme-button.svg" alt="Theme change"/>
     </header>
   )
 }
