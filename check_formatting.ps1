@@ -1,12 +1,14 @@
 cd ./chattr/
 
-black --check .
-flake8 --show-source --statistics .
-ruff check .
-isort --check .
-djlint .
+Start-Job -ScriptBlock {echo "black: "; black --check . }
+Start-Job -ScriptBlock {echo "flake8: "; flake8 --show-source --statistics . }
+Start-Job -ScriptBlock {echo "ruff: "; ruff check . }
+Start-Job -ScriptBlock {echo "isort: "; isort --check . }
+Start-Job -ScriptBlock {echo "djlint: "; djlint . }
 
-cd chattr/chattr-react
-eslint --ext .jsx
+Start-Job -ScriptBlock {echo "eslint: "; cd chattr-react; eslint --ext .jsx }
+
+Get-Job | Wait-Job
+Get-Job | Receive-Job
 
 cd ..
