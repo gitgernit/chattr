@@ -12,6 +12,7 @@ class MaxUsersValidator:
             raise rest_framework.exceptions.ValidationError(
                 'Max users must be greater than 0',
             )
+
         if value >= self.max_users:
             raise rest_framework.exceptions.ValidationError(
                 f'Max users must be less than or equal to {self.max_users}',
@@ -27,6 +28,7 @@ class MaxIdleTimeValidator:
             raise rest_framework.exceptions.ValidationError(
                 'Max idle time must be greater than 0',
             )
+
         if value >= self.max_idle_time:
             raise rest_framework.exceptions.ValidationError(
                 f'Max idle time must be less than or '
