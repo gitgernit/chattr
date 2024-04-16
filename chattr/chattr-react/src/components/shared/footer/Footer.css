@@ -5,8 +5,6 @@
 }
 
 .footer #app-name {
-  position: absolute;
-  bottom: 0;
   font-family: Teko, sans-serif;
   font-size: 25px;
   font-weight: lighter;
