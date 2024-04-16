@@ -8,9 +8,9 @@ class MaxUsersValidator:
         self.max_users = max_users
 
     def __call__(self, value):
-        if value <= 1:
+        if value < 0:
             raise rest_framework.exceptions.ValidationError(
-                'Max users must be greater than 1',
+                'Max users must be greater than 0',
             )
         if value >= self.max_users:
             raise rest_framework.exceptions.ValidationError(
@@ -23,7 +23,7 @@ class MaxIdleTimeValidator:
         self.max_idle_time = max_idle_time
 
     def __call__(self, value):
-        if value <= 0:
+        if value < 0:
             raise rest_framework.exceptions.ValidationError(
                 'Max idle time must be greater than 0',
             )
