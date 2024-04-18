@@ -16,12 +16,12 @@ class ApiEndpointsTest(TestCase):
         [
             (60, 60, HTTPStatus.OK),
             (0, 0, HTTPStatus.OK),
-            (-1, 60, HTTPStatus.NOT_FOUND),
-            (60, -1, HTTPStatus.NOT_FOUND),
-            (-1, -1, HTTPStatus.NOT_FOUND),
-            ('asd', 60, HTTPStatus.NOT_FOUND),
-            (60, 'asd', HTTPStatus.NOT_FOUND),
-            ('dds', 'asd', HTTPStatus.NOT_FOUND),
+            (-1, 60, HTTPStatus.BAD_REQUEST),
+            (60, -1, HTTPStatus.BAD_REQUEST),
+            (-1, -1, HTTPStatus.BAD_REQUEST),
+            ('asd', 60, HTTPStatus.BAD_REQUEST),
+            (60, 'asd', HTTPStatus.BAD_REQUEST),
+            ('dds', 'asd', HTTPStatus.BAD_REQUEST),
         ],
     )
     def test_catalog_item_endpoint(self, max_users, max_time, expected_status):
