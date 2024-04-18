@@ -41,8 +41,7 @@ eslint:
   stage: linting
   image: registry.gitlab.com/pipeline-components/eslint:latest
   before_script:
-    - cd chattr
-    - cd chattr-react
+    - cd chattr/chattr-react
   script:
     - eslint --ext .jsx
 
@@ -50,6 +49,6 @@ test:
   stage: testing
   image: python:3.12
   before_script:
-    - cd ..
+    - cd chattr
   script:
     - python3 manage.py test api/homepage
