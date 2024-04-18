@@ -40,7 +40,6 @@ test:
   stage: test
   image: python:3.12
   script:
-    - cd chattr
     - python3 manage.py test
 
 eslint:
