@@ -1,3 +1,4 @@
+-r prod.txt
 black==24.1.1
 djlint==1.34.1
 flake8-absolute-import==1.0.0.2
