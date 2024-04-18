@@ -1,5 +1,6 @@
 stages:
-   - linting
+  - linting
+  - testing
 
 default:
   image: python:3.12
@@ -36,12 +37,6 @@ djlint:
   script:
     - djlint .
 
-test:
-  stage: test
-  image: python:3.12
-  script:
-    - python3 manage.py test
-
 eslint:
   stage: linting
   image: registry.gitlab.com/pipeline-components/eslint:latest
@@ -49,3 +44,11 @@ eslint:
     - cd chattr-react
   script:
     - eslint --ext .jsx
+
+test:
+  stage: testing
+  image: python:3.12
+  before_script:
+    - cd chattr
+  script:
+    - python3 manage.py test api/homepage
