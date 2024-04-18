@@ -50,6 +50,7 @@ test:
   stage: testing
   image: python:3.12
   before_script:
+    - pip install -r requirements/prod.txt
     - cd chattr
   script:
     - python3 manage.py test api/homepage
