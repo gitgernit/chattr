@@ -1,4 +1,5 @@
 import './Header.css'
+import themeButtonUrl from '/src/assets/theme-button.svg'
 
 let body = document.querySelector('body')
 
@@ -48,7 +49,7 @@ function Header() {
       </span>
       <input type="image" id="theme-button"
              onClick={changeTheme}
-             src="/src/assets/theme-button.svg" alt="Theme change"/>
+             src={themeButtonUrl} alt="Theme change"/>
     </header>
   )
 }
