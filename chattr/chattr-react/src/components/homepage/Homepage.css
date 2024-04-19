@@ -5,6 +5,10 @@
   flex: 1;
 }
 
+.typewriter {
+  font-size: 25px;
+}
+
 .link-generator {
   display: flex;
   position: absolute;
@@ -81,7 +85,7 @@
   transform: translate(-50%);
   min-width: 250px;
   max-width: 20%;
-  min-height: 100px;
+  min-height: 200px;
   max-height: 20%;
   height: 100%;
   padding: 20px;
@@ -128,10 +132,10 @@
 
 .settings-modal .settings-inputs .inputs-wrapper .max-users {
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 
 .settings-modal .settings-inputs .inputs-wrapper .max-idle-time {
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }

@@ -1,8 +1,11 @@
 import './Homepage.css';
 import {useEffect, useState} from 'react';
 import {ToastContainer, toast, Flip} from 'react-toastify';
+import {useFormik} from 'formik';
 import ReactModal from 'react-modal';
 import axios from "axios";
+import Typewriter from 'typewriter-effect';
+import * as Yup from 'yup';
 import 'react-toastify/dist/ReactToastify.css';
 import cogsUrl from '/src/assets/cogs.svg';
 import closeButtonUrl from '/src/assets/close-button.svg';
@@ -22,6 +25,16 @@ const modalStyle = {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 };
+
+const validationSchema = Yup.object().shape({
+  maxUsers: Yup.number()
+    .min(1, '< 1')
+    .max(100, '> 100'),
+  maxIdleTime: Yup.number()
+    .min(1, '< 1')
+    .max(10080, '> 10080')
+});
+
 
 const copyLink = async () => {
   const textbox = document.getElementById('link-textbox');
@@ -64,6 +77,31 @@ ReactModal.setAppElement('#root')
 function Homepage() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const formik = useFormik({
+    initialValues: {
+      maxUsers: localStorage.getItem('maxUsers'),
+      maxIdleTime: localStorage.getItem('maxIdleTime'),
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      const maxUsersInput = document.querySelector('.max-users .number-input');
+      const maxIdleTimeInput = document.querySelector('.max-idle-time .number-input');
+
+      const maxUsers = maxUsersInput.value
+      const maxIdleTime = maxIdleTimeInput.value
+
+      const storedMaxUsers = localStorage.getItem('maxUsers');
+      const storedMaxIdleTime = localStorage.getItem('maxIdleTime');
+
+      if (maxUsers !== storedMaxUsers || maxIdleTime !== storedMaxIdleTime) {
+        localStorage.setItem('maxUsers', maxUsers);
+        localStorage.setItem('maxIdleTime', maxIdleTime);
+
+        fetchRoomUrl()
+      }
+    },
+  });
+
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -80,67 +118,83 @@ function Homepage() {
   }
 
   const closeModal = () => {
-    setModalIsOpen(false);
-
-    const maxUsersInput = document.querySelector('.max-users .number-input');
-    const maxIdleTimeInput = document.querySelector('.max-idle-time .number-input');
-
-    const maxUsers = maxUsersInput.value
-    const maxIdleTime = maxIdleTimeInput.value
-
-    const storedMaxUsers = localStorage.getItem('maxUsers');
-    const storedMaxIdleTime = localStorage.getItem('maxIdleTime');
-
-    if (maxUsers !== storedMaxUsers || maxIdleTime !== storedMaxIdleTime) {
-      localStorage.setItem('maxUsers', maxUsers);
-      localStorage.setItem('maxIdleTime', maxIdleTime);
-
-      fetchRoomUrl()
+    if (formik.isValid) {
+      formik.handleSubmit()
+      setModalIsOpen(false);
     }
   };
 
-    useEffect(() => {
-      fetchRoomUrl();
-    }, []);
+  useEffect(() => {
+    fetchRoomUrl();
+  }, []);
 
-    return (
-      <>
-        <div className="homepage">
-          <div className="link-generator">
+  return (
+    <>
+      <div className="homepage">
+        <div className="typewriter">
+          <Typewriter
+            options={{
+              strings: [
+                'Instant chatrooms',
+                'No registration required',
+                'No history saved',
+              ],
+              delay: 100,
+              autoStart: true,
+              pauseFor: 5000,
+              loop: true,
+            }}
+          />
+        </div>
+        <div className="link-generator">
           <span id="link-textbox"
                 onClick={copyLink}/>
-            <button id="link-settings" onClick={openModal}>
-              <img src={cogsUrl} alt="Modal with room settings"
-                   id="settings-img"/>
-            </button>
-          </div>
-          <ToastContainer/>
+          <button id="link-settings" onClick={openModal}>
+            <img src={cogsUrl} alt="Modal with room settings"
+                 id="settings-img"/>
+          </button>
         </div>
-        <ReactModal isOpen={modalIsOpen} onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    className="settings-modal" style={modalStyle}
-                    closeTimeoutMS={200}>
-          <h2>Room Settings</h2>
-          <input type="image" alt="Close modal button"
-                 src={closeButtonUrl}
-                 id="close-button" onClick={closeModal}/>
-          <div className="settings-inputs">
-            <div className="inputs-wrapper">
-              <div className="max-users">
-                <span>Max users</span>
-                <input type="number" className="number-input"
-                       placeholder="24"/>
-              </div>
-              <div className="max-idle-time">
-                <span>Max idle time</span>
-                <input type="number" className="number-input"
-                       placeholder="10800"/>
-              </div>
+        <ToastContainer/>
+      </div>
+      <ReactModal isOpen={modalIsOpen} onAfterOpen={afterOpenModal}
+                  onRequestClose={closeModal}
+                  className="settings-modal" style={modalStyle}
+                  closeTimeoutMS={200}>
+        <h2>Room Settings</h2>
+        <input type="image" alt="Close modal button"
+               src={closeButtonUrl}
+               id="close-button" onClick={closeModal}/>
+        <div className="settings-inputs">
+          <div className="inputs-wrapper">
+            <div className="max-users">
+              <span>Max users</span>
+              <input
+                type="number"
+                className="number-input"
+                placeholder="24"
+                {...formik.getFieldProps('maxUsers')}
+              />
+              {formik.touched.maxUsers && formik.errors.maxUsers ? (
+                <div className="error-message">{formik.errors.maxUsers}</div>
+              ) : null}
+            </div>
+            <div className="max-idle-time">
+              <span>Max idle time</span>
+              <input
+                type="number"
+                className="number-input"
+                placeholder="1440"
+                {...formik.getFieldProps('maxIdleTime')}
+              />
+              {formik.touched.maxIdleTime && formik.errors.maxIdleTime ? (
+                <div className="error-message">{formik.errors.maxIdleTime}</div>
+              ) : null}
             </div>
           </div>
-        </ReactModal>
-      </>
-    )
-  }
+        </div>
+      </ReactModal>
+    </>
+  )
+}
 
-  export default Homepage
+export default Homepage
