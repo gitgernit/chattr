@@ -4,6 +4,16 @@ import ReactModal from "react-modal";
 import {ToastContainer, toast, Flip} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
+const toastConfig = {
+  position: "top-left",
+  autoClose: 2000,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  transition: Flip,
+  className: 'notification',
+}
+
 const copyLink = async () => {
   const textbox = document.getElementById('link-textbox');
   const theme = localStorage.getItem('theme')
@@ -11,19 +21,16 @@ const copyLink = async () => {
   try {
     await navigator.clipboard.writeText(textbox.value);
     toast.success('Link saved to clipboard', {
-      position: "top-left",
-      autoClose: 2000,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      transition: Flip,
+      ...toastConfig,
       theme: theme,
     });
   } catch (error) {
-    console.log('shit')
+    toast.error('Couldnt save link to clipboard', {
+      ...toastConfig,
+      theme: theme,
+    });
   }
 }
-
 
 ReactModal.setAppElement('#root')
 

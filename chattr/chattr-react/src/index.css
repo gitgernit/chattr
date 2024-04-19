@@ -1,11 +1,12 @@
 :root {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'JetBrains Mono', sans-serif;
 
   --toastify-color-dark: #424769;
   --toastify-color-light: #FEECE2;
   --toastify-toast-width: 300px;
-  --toastify-toast-min-height: 10px;
-  --toastify-font-family: 'Roboto Condensed';
+  --toastify-toast-min-height: 50px;
+  --toastify-toast-max-height: 50px;
+  --toastify-font-family: 'JetBrains Mono', sans-serif;
 }
 
 #root {
@@ -14,7 +15,7 @@
   min-height: 100dvh;
 }
 
-input, button {
+input, button, .Toastify__toast {
   transition: all 0.3s ease-in-out;
 }
 
@@ -55,5 +56,10 @@ body.initial-load {
 
   --toastify-icon-color-success: #535C91;
   --toastify-color-progress-success: #535C91;
+}
 
+.notification {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text);
 }
