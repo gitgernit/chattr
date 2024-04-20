@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding-top: 5px;
+}
+
+.header #app-name {
+  font-size: 30px;
+  font-family: Teko, sans-serif;
+  font-weight: bolder;
+}
+
+.header #theme-button {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 5%;
+}
+
+#theme-button:hover {
+  filter: drop-shadow(0 0 10px var(--shadow));
+}

@@ -1,0 +1,141 @@
+.homepage {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex: 1;
+}
+
+.typewriter {
+  font-size: 25px;
+}
+
+.link-generator {
+  display: flex;
+  position: absolute;
+  top: 30%;
+  align-items: center;
+  gap: 5px;
+}
+
+.link-generator #link-textbox {
+  background-color: var(--element-bg);
+  color: var(--element-text);
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  font-size: 15px;
+  width: 350px;
+  height: 25px;
+  padding-left: 5px;
+  padding-top: 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.link-generator #link-textbox:hover {
+  cursor: pointer;
+}
+
+.link-generator #link-textbox:active {
+  transition: 0s;
+  background-color: var(--element-bg-darker);
+}
+
+.link-generator #link-textbox:focus {
+  outline: none;
+}
+
+.link-generator #link-settings {
+  background-color: var(--element-bg);
+  border: 2px solid var(--border);
+  border-radius: 3px;
+}
+
+.link-generator #link-settings:active {
+  transition: 0s;
+  transform: scale(0.95);
+  background-color: var(--element-bg-darker);
+}
+
+.link-generator #settings-img {
+  width: 25px;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.settings-modal {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  min-width: 250px;
+  max-width: 20%;
+  min-height: 200px;
+  max-height: 20%;
+  height: 100%;
+  padding: 20px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  background-color: var(--bg);
+  overflow: hidden;
+}
+
+.settings-modal #close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  width: 30px;
+  filter: var(--filtered-text);
+}
+
+.settings-modal #close-button:hover {
+  transition: 0.3s;
+  transform: scale(0.95);
+}
+
+.settings-modal .settings-inputs {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex: 1;
+}
+
+.settings-modal .settings-inputs .inputs-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  top: 15%;
+  gap: 5px;
+  padding: 5px;
+}
+
+.settings-modal .settings-inputs .inputs-wrapper input {
+  position: absolute;
+  right: 0;
+}
+
+.settings-modal .settings-inputs .inputs-wrapper .max-users {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.settings-modal .settings-inputs .inputs-wrapper .max-idle-time {
+  gap: 5px;
+}

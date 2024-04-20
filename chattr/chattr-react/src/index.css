@@ -1,40 +1,99 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: 'JetBrains Mono', sans-serif;
 
-  background-color: #242124;
+  --toastify-color-dark: #424769;
+  --toastify-color-light: #FEECE2;
+  --toastify-toast-width: 300px;
+  --toastify-toast-min-height: 50px;
+  --toastify-toast-max-height: 50px;
+  --toastify-font-family: 'JetBrains Mono', sans-serif;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+input, button, span, .Toastify__toast {
+  transition: all 0.3s ease-in-out;
 }
 
 body {
+  transition: all 0.3s ease-in-out;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+body.initial-load {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #4f4f4f;
-  cursor: pointer;
-  transition: border-color 0.25s;
+[theme="light"] {
+  --bg: #F3E8DD;
+  --text: #5C5470;
+  --filtered-text: invert(22%) sepia(3%) saturate(6483%) hue-rotate(216deg) brightness(107%) contrast(60%);
+  --border: #D7C0AE;
+  --element-bg: #EEE3CB;
+  --element-bg-darker: #E8D4C3;
+  --element-text: #B3A492;
+  --shadow: #070F2B;
+
+  --toastify-icon-color-success: #E2BFB3;
+  --toastify-color-progress-success: #E2BFB3;
 }
-button:hover {
-  border-color: #5E5694;
+
+[theme="dark"] {
+  --bg: #352F44;
+  --text: #B9B4C7;
+  --filtered-text: invert(92%) sepia(6%) saturate(1596%) hue-rotate(199deg) brightness(82%) contrast(88%);
+  --border: #535C91;
+  --element-bg: #424769;
+  --element-bg-darker: #383C59;
+  --element-text: #7077A1;
+  --shadow: #F0CAA3;
+
+  --toastify-icon-color-success: #535C91;
+  --toastify-color-progress-success: #535C91;
+}
+
+.notification {
+  font-size: 15px;
+  font-weight: bold;
+  max-height: none;
+  color: var(--text);
+}
+
+.number-input {
+  font-family: 'JetBrains Mono', sans-serif;
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  background-color: var(--element-bg);
+  min-width: 40px;
+  max-width: 70px;
+  padding-left: 3px;
+  overflow: hidden;
+}
+
+.number-input:focus {
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.error-message {
+  color: red;
 }
