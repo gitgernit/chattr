@@ -90,7 +90,7 @@ function Homepage() {
       maxIdleTime: localStorage.getItem('maxIdleTime'),
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: () => {
       const maxUsersInput = document.querySelector('.max-users .number-input');
       const maxIdleTimeInput = document.querySelector('.max-idle-time .number-input');
 
