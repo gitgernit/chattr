@@ -1,13 +1,16 @@
 from http import HTTPStatus
+from unittest.mock import patch
 
 import django.core.exceptions
 import django.test
+import fakeredis
 from django.test import TestCase
 import django.urls
 import parameterized
 
-
+@patch('api.homepage.views.redis_client', fakeredis.FakeRedis)
 class ApiEndpointsTest(TestCase):
+
     def test_api_endpoint(self):
         response = django.test.Client().get('/api/homepage/get_room/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
