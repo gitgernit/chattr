@@ -29,10 +29,10 @@ const modalStyle = {
 const validationSchema = Yup.object().shape({
   maxUsers: Yup.number()
     .min(1, '< 1')
-    .max(100, '> 100'),
+    .max(99, '>= 100'),
   maxIdleTime: Yup.number()
     .min(1, '< 1')
-    .max(10080, '> 10080')
+    .max(10079, '>= 10080')
 });
 
 
@@ -41,7 +41,7 @@ const copyLink = async () => {
   const theme = localStorage.getItem('theme')
 
   try {
-    await navigator.clipboard.writeText(textbox.value);
+    await navigator.clipboard.writeText(textbox.innerHTML);
     toast.success('Link saved to clipboard', {
       ...toastConfig,
       theme: theme,
