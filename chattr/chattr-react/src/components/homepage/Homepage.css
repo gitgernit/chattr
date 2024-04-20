@@ -132,10 +132,10 @@
 
 .settings-modal .settings-inputs .inputs-wrapper .max-users {
   display: flex;
+  flex-direction: column;
   gap: 5px;
 }
 
 .settings-modal .settings-inputs .inputs-wrapper .max-idle-time {
-  display: flex;
   gap: 5px;
 }
