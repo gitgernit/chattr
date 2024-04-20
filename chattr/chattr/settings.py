@@ -38,21 +38,25 @@ DB_NAME = os.getenv('POSTGRES_NAME')
 DB_USER = os.getenv('POSTGRES_USER')
 DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 
-REDIS_HOST = os.getenv('REDIS_HOST', default='127.0.0.1:6379')
+REDIS_HOST = os.getenv('REDIS_HOST', default='127.0.0.1')
+REDIS_PORT = os.getenv('REDIS_PORT', default='6379')
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'rest_framework',
 ] + [
     'homepage.apps.HomepageConfig',
+    'chat.apps.ChatConfig',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +88,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chattr.wsgi.application'
+ASGI_APPLICATION = 'chattr.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}'],
+            'symmetric_encryption_keys': [SECRET_KEY],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -100,7 +115,7 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': f'redis://{REDIS_HOST}/0',
+        'LOCATION': f'redis://{REDIS_HOST}:{REDIS_PORT}/0',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             'PASSWORD': REDIS_PASSWORD,
