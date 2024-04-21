@@ -70,7 +70,7 @@ homepage:
     - postgres
   before_script:
     - pip install -r requirements/prod.txt
-    - pip install -r requirements/text.txt
+    - pip install -r requirements/test.txt
     - cd chattr
   script:
     - python3 manage.py migrate
@@ -82,7 +82,7 @@ api_homepage:
     - postgres
   before_script:
     - pip install -r requirements/prod.txt
-    - pip install -r requirements/text.txt
+    - pip install -r requirements/test.txt
     - cd chattr
   script:
     - python3 manage.py migrate
