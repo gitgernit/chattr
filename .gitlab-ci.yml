@@ -1,11 +1,19 @@
 stages:
   - linting
+  - building
   - testing
+
+variables:
+  POSTGRES_DB: $POSTGRES_DB
+  POSTGRES_NAME: $POSTGRES_DB
+  POSTGRES_HOST: $POSTGRES_DB
+  POSTGRES_USER: $POSTGRES_USER
+  POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  POSTGRES_PORT: 5432
 
 default:
   image: python:3.12
   before_script:
-    - pip install -r requirements/prod.txt
     - pip install -r requirements/lint.txt
 
 black:
@@ -28,13 +36,11 @@ ruff:
 
 isort:
   stage: linting
-  image: python:3.12
   script:
     - isort --check .
 
 djlint:
   stage: linting
-  image: python:3.12
   script:
     - djlint .
 
@@ -46,11 +52,39 @@ eslint:
   script:
     - eslint --ext .jsx
 
-test:
+frontend:
+  stage: building
+  image: node
+  before_script:
+    - cd chattr/chattr-react
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - chattr/chattr-react/dist/
+
+homepage:
   stage: testing
-  image: python:3.12
+  services:
+    - postgres
   before_script:
     - pip install -r requirements/prod.txt
+    - pip install -r requirements/text.txt
     - cd chattr
   script:
+    - python3 manage.py migrate
+    - python3 manage.py test homepage
+
+api_homepage:
+  stage: testing
+  services:
+    - postgres
+  before_script:
+    - pip install -r requirements/prod.txt
+    - pip install -r requirements/text.txt
+    - cd chattr
+  script:
+    - python3 manage.py migrate
     - python3 manage.py test api/homepage
+

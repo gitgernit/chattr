@@ -1,38 +1,36 @@
-from http import HTTPStatus
-from unittest.mock import patch
+__all__ = []
 
-import django.core.exceptions
+import http
+
 import django.test
-import fakeredis
-from django.test import TestCase
 import django.urls
 import parameterized
+import rest_framework.reverse
 
-@patch('api.homepage.views.redis_client', fakeredis.FakeRedis)
-class ApiEndpointsTest(TestCase):
 
+class ApiEndpointsTest(django.test.TestCase):
     def test_api_endpoint(self):
-        response = django.test.Client().get('/api/homepage/get_room/')
-        self.assertEqual(response.status_code, HTTPStatus.OK)
+        response = self.client.get(
+            rest_framework.reverse.reverse('api:homepage:get_room'),
+        )
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
 
     @parameterized.parameterized.expand(
         [
-            (60, 60, HTTPStatus.OK),
-            (0, 0, HTTPStatus.OK),
-            (-1, 60, HTTPStatus.BAD_REQUEST),
-            (60, -1, HTTPStatus.BAD_REQUEST),
-            (-1, -1, HTTPStatus.BAD_REQUEST),
-            ('asd', 60, HTTPStatus.BAD_REQUEST),
-            (60, 'asd', HTTPStatus.BAD_REQUEST),
-            ('dds', 'asd', HTTPStatus.BAD_REQUEST),
+            (60, 60, http.HTTPStatus.OK),
+            (0, 0, http.HTTPStatus.OK),
+            (-1, 60, http.HTTPStatus.BAD_REQUEST),
+            (60, -1, http.HTTPStatus.BAD_REQUEST),
+            (-1, -1, http.HTTPStatus.BAD_REQUEST),
+            ('asd', 60, http.HTTPStatus.BAD_REQUEST),
+            (60, 'asd', http.HTTPStatus.BAD_REQUEST),
+            ('dds', 'asd', http.HTTPStatus.BAD_REQUEST),
         ],
     )
     def test_catalog_item_endpoint(self, max_users, max_time, expected_status):
-        response = django.test.Client().get(
-            '/api/homepage/get_room/'
-            f'?max_users={max_users}&max_idle_time={max_time}',
+        response = self.client.get(
+            rest_framework.reverse.reverse('api:homepage:get_room')
+            + f'?max_users={max_users}'
+            + f'&max_idle_time={max_time}',
         )
         self.assertEqual(response.status_code, expected_status)
-
-
-__all__ = []

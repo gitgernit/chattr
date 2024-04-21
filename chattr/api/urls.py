@@ -5,12 +5,11 @@ import rest_framework.urls
 
 import api.homepage.urls
 
-app_name = 'api_homepage'
+app_name = 'api'
 
 urlpatterns = [
     rest_framework.urls.path(
         'homepage/',
         django.urls.include(api.homepage.urls),
-        name='homepage',
     ),
 ]
