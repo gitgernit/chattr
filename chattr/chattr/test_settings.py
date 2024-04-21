@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 
 import dotenv
+import fakeredis
 
 # Build paths inside the chattr like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,8 +107,9 @@ CACHES = {
         'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': f'redis://{REDIS_HOST}/0',
         'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'PASSWORD': REDIS_PASSWORD,
+            'CONNECTION_POOL_KWARGS': {
+                'connection_class': fakeredis.FakeConnection,
+            },
         },
     },
 }
