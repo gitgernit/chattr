@@ -34,9 +34,11 @@ ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', default='*').split()
 
 INTERNAL_IPS = os.getenv('DJANGO_ALLOWED_HOSTS', default='').split()
 
-DB_NAME = os.getenv('POSTGRES_NAME')
-DB_USER = os.getenv('POSTGRES_USER')
-DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
+DB_HOST = os.getenv('POSTGRES_HOST', default='postgres')
+DB_PORT = os.getenv('POSTGRES_PORT', default=5432)
+DB_NAME = os.getenv('POSTGRES_NAME', default='postgres')
+DB_USER = os.getenv('POSTGRES_USER', default='testuser')
+DB_PASSWORD = os.getenv('POSTGRES_PASSWORD', default='testpassword')
 
 REDIS_HOST = os.getenv('REDIS_HOST', default='127.0.0.1:6379')
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
@@ -91,6 +93,8 @@ WSGI_APPLICATION = 'chattr.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
         'NAME': DB_NAME,
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
