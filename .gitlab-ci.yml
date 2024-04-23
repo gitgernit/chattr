@@ -74,7 +74,7 @@ homepage:
     - cd chattr
   script:
     - python3 manage.py migrate
-    - python3 manage.py test homepage
+    - python3 manage.py test room
 
 api_homepage:
   stage: testing
@@ -86,5 +86,5 @@ api_homepage:
     - cd chattr
   script:
     - python3 manage.py migrate
-    - python3 manage.py test api/homepage
+    - python3 manage.py test api/room
 
