@@ -1,8 +1,8 @@
 import rest_framework.urls
 
-import api.room.views
+import api.homepage.views
 
-app_name = 'room'
+app_name = 'api_homepage'
 
 urlpatterns = [
     rest_framework.urls.path(

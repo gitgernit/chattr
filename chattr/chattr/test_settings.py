@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
 ] + [
-    'room.apps.HomepageConfig',
+    'api.homepage.apps.ApiHomepageConfig',
+    'homepage.apps.HomepageConfig',
 ]
 
 MIDDLEWARE = [

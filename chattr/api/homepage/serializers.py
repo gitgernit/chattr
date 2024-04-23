@@ -2,7 +2,7 @@ __all__ = []
 
 import rest_framework.serializers
 
-import api.room.validators
+import api.homepage.validators
 
 
 class RoomSettingsSerializer(rest_framework.serializers.Serializer):
