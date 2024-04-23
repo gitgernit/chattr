@@ -26,7 +26,8 @@ DB_NAME = os.getenv('POSTGRES_NAME', default='postgres')
 DB_USER = os.getenv('POSTGRES_USER', default='testuser')
 DB_PASSWORD = os.getenv('POSTGRES_PASSWORD', default='testpassword')
 
-REDIS_HOST = os.getenv('REDIS_HOST', default='127.0.0.1:6379')
+REDIS_HOST = os.getenv('REDIS_HOST', default='127.0.0.1')
+REDIS_PORT = os.getenv('REDIS_PORT', default='6379')
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
 
 # Application definition
@@ -89,13 +90,20 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': f'redis://{REDIS_HOST}/0',
+        'LOCATION': f'redis://{REDIS_HOST}:{REDIS_PORT}/2',
         'OPTIONS': {
-            'CONNECTION_POOL_KWARGS': {
-                'connection_class': fakeredis.FakeConnection,
-            },
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'PASSWORD': REDIS_PASSWORD,
         },
     },
+}
+
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS = {
+    'host': REDIS_HOST,
+    'port': REDIS_PORT,
+    'password': REDIS_PASSWORD,
+    'db': 3,
 }
 
 AUTH_PASSWORD_VALIDATORS = [

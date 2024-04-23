@@ -1,8 +1,8 @@
 import django.contrib.admin
 import django.urls
-import homepage.urls
 
 import api.urls
+import homepage.urls
 
 urlpatterns = [
     django.urls.path(
