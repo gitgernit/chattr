@@ -60,6 +60,9 @@ cover/
 *.mo
 *.pot
 
+# Redis stuff:
+*.rdb
+
 # Django stuff:
 *.log
 local_settings.py

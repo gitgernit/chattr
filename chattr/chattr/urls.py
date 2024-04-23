@@ -1,18 +1,20 @@
-from django.contrib import admin
-from django.urls import include
-from django.urls import path
+import django.contrib.admin
+import django.urls
 import homepage.urls
 
 import api.urls
 
 urlpatterns = [
-    path(
+    django.urls.path(
         '',
-        include(homepage.urls),
+        django.urls.include(homepage.urls),
     ),
-    path(
+    django.urls.path(
         'api/',
-        include(api.urls),
+        django.urls.include(api.urls),
     ),
-    path('admin/', admin.site.urls),
+    django.urls.path(
+        'admin/',
+        django.contrib.admin.site.urls,
+    ),
 ]

@@ -1,9 +1,9 @@
-from django.apps import AppConfig
+import django.apps
 
 __all__ = []
 
 
-class HomepageConfig(AppConfig):
+class HomepageConfig(django.apps.AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'homepage'
     verbose_name = 'Главная страница'
