@@ -34,7 +34,7 @@ force_alphabetical_sort_within_sections = true
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY",
     "LOCALABSOLUTE", "LOCALFOLDER"]
 no_lines_before = ["LOCALFOLDER"]
-known_localabsolute = ["chattr", "api"]
+known_localabsolute = ["chattr", "api", "chat", "homepage"]
 # the closest to google import order
 # config I could make,  may be faulty
 

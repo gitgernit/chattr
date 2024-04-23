@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
-import homepage.urls
 
 import api.urls
+import homepage.urls
 
 urlpatterns = [
     path(
@@ -14,5 +14,8 @@ urlpatterns = [
         'api/',
         include(api.urls),
     ),
-    path('admin/', admin.site.urls),
+    path(
+        'admin/',
+        admin.site.urls,
+    ),
 ]
