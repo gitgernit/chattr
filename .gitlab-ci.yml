@@ -56,7 +56,8 @@ eslint:
 sort-requirements:
   stage: linting
   script:
-    - sort-requirements -c .\requirements\prod.txt .\requirements\lint.txt .\requirements\test.txt
+    - cd requirements
+    - sort-requirements -c prod.txt lint.txt test.txt
 
 frontend:
   stage: building
