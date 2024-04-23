@@ -1,3 +1,5 @@
+// COMPLETE SHIT! DONT PUSH TO DEV
+
 import './Webrtc.css'
 
 let localStream;
@@ -86,15 +88,13 @@ const generateOffer = async () => {
 }
 
 const acceptOffer = async () => {
-  let offer = JSON.parse(document.getElementById('sdp-area').value)
+  let sdp = JSON.parse(document.getElementById('sdp-area').value)
 
-  if (offer['type'] === 'offer') {
+  if (sdp['type'] === 'offer') {
     await setUpConnection()
-    await peerConnection.setRemoteDescription(offer)
+    await peerConnection.setRemoteDescription(sdp)
     peerConnection.createAnswer()
       .then((answer) => peerConnection.setLocalDescription(answer))
-
-    document.getElementById('sdp-area')
   } else {
     await acceptAnswer()
   }
