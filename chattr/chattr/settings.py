@@ -58,8 +58,8 @@ INSTALLED_APPS = [
     'rest_framework',
 ] + [
     'api.homepage.apps.ApiHomepageConfig',
-    'homepage.apps.HomepageConfig',
     'chat.apps.ChatConfig',
+    'homepage.apps.HomepageConfig',
 ]
 
 MIDDLEWARE = [
