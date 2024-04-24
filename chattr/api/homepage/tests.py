@@ -11,7 +11,7 @@ import rest_framework.reverse
 class ApiEndpointsTest(django.test.TestCase):
     def test_api_endpoint(self):
         response = self.client.get(
-            rest_framework.reverse.reverse('api:homepage:get_room'),
+            rest_framework.reverse.reverse('api:api_homepage:get_room'),
         )
         self.assertEqual(response.status_code, http.HTTPStatus.OK)
 
@@ -29,7 +29,7 @@ class ApiEndpointsTest(django.test.TestCase):
     )
     def test_catalog_item_endpoint(self, max_users, max_time, expected_status):
         response = self.client.get(
-            rest_framework.reverse.reverse('api:homepage:get_room')
+            rest_framework.reverse.reverse('api:api_homepage:get_room')
             + f'?max_users={max_users}'
             + f'&max_idle_time={max_time}',
         )

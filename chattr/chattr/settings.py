@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'channels',
     'rest_framework',
 ] + [
+    'api.homepage.apps.ApiHomepageConfig',
     'homepage.apps.HomepageConfig',
     'chat.apps.ChatConfig',
 ]

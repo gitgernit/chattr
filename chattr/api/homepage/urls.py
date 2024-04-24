@@ -2,7 +2,7 @@ import rest_framework.urls
 
 import api.homepage.views
 
-app_name = 'homepage'
+app_name = 'api_homepage'
 
 urlpatterns = [
     rest_framework.urls.path(
