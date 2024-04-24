@@ -1,16 +1,17 @@
 # CHATTR
-There is a site that helps you to create anonymous text and video chats with your friends or colleagues.
-Set your own parameters in settings and share link.
+### Chattr is a service allowing you to anonymously create & join blazing-fast chatrooms in a few clicks.
+A full installation instruction is provided below. Feel free 
+to contribute to the project - 
 
 ### 0.0. Python preparation
 ```shell
-python -m venv venv # create virtual environment
+python -m venv venv
 ```
 ```shell
-. venv/bin/activate # start virtual environment
+. venv/bin/activate
 ```
 ```shell
-pip install -r requirements/prod.txt # install requirements
+pip install -r requirements/prod.txt 
 ```
 
 ### 0.1 React preparation   
@@ -30,7 +31,7 @@ A postgres database, its owner (a user) and a Redis database are required
 ```shell
 cp .env.template .env
 ``` 
-configure the variables
+configure the corresponding values in your .env file
 
 ### 2. Run migrations
 ```shell
@@ -45,5 +46,5 @@ python manage.py migrate
 
 ### 3. Run the server!
 ```shell
-ython manage.py runserver
+python manage.py runserver
 ```
