@@ -7,4 +7,4 @@ class ChatConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'chat'
     label = 'chat'
-    verbose_name = 'Вебсокет-чат'
+    verbose_name = 'Websocket-chat'

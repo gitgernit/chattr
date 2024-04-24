@@ -7,18 +7,18 @@ import api.homepage.validators
 
 class Room(django.db.models.Model):
     room_id = django.db.models.CharField(
-        'ID',
+        verbose_name='идентификатор комнаты',
         db_index=True,
     )
     max_users = django.db.models.IntegerField(
-        'MaxUsers',
+        verbose_name='максимальное количество пользователей',
         validators=[
             api.homepage.validators.MaxUsersValidator(100),
         ],
         default=24,
     )
-    max_time = django.db.models.IntegerField(
-        'MaxTime',
+    max_idle_time = django.db.models.IntegerField(
+        verbose_name='максимальное время бездействия комнаты',
         validators=[
             api.homepage.validators.MaxIdleTimeValidator(10080),
         ],
