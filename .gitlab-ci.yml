@@ -46,7 +46,7 @@ djlint:
 
 eslint:
   stage: linting
-  image: iochord/npm-runner
+  image: node
   before_script:
     - cd chattr/chattr-react
     - npm install
