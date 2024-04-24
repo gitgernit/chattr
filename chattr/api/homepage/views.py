@@ -25,7 +25,7 @@ class NewRoom(rest_framework.views.APIView):
             new_room = api.homepage.models.Room(
                 room_id=room_id_parse,
                 max_users=room_settings['max_users'],
-                max_time=room_settings['max_idle_time'],
+                max_idle_time=room_settings['max_idle_time'],
             )
             new_room.save()
 

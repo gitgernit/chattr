@@ -46,11 +46,12 @@ djlint:
 
 eslint:
   stage: linting
-  image: registry.gitlab.com/pipeline-components/eslint:latest
+  image: node
   before_script:
     - cd chattr/chattr-react
+    - npm install
   script:
-    - eslint --ext .jsx
+    - npm run lint
 
 frontend:
   stage: building
