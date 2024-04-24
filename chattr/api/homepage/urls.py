@@ -1,3 +1,5 @@
+__all__ = []
+
 import rest_framework.urls
 
 import api.homepage.views

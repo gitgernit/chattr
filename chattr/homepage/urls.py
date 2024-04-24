@@ -1,3 +1,5 @@
+__all__ = []
+
 from django.urls import path
 import django.views.generic
 
