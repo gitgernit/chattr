@@ -7,7 +7,7 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api_homepage', '0001_initial'),
+        ('api_rooms', '0001_initial'),
     ]
 
     operations = [

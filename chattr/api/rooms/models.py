@@ -2,7 +2,7 @@ __all__ = []
 
 import django.db.models
 
-import api.homepage.validators
+import api.rooms.validators
 
 
 class Room(django.db.models.Model):
@@ -13,14 +13,14 @@ class Room(django.db.models.Model):
     max_users = django.db.models.IntegerField(
         verbose_name='максимальное количество пользователей',
         validators=[
-            api.homepage.validators.MaxUsersValidator(100),
+            api.rooms.validators.MaxUsersValidator(100),
         ],
         default=24,
     )
     max_idle_time = django.db.models.IntegerField(
         verbose_name='максимальное время бездействия комнаты',
         validators=[
-            api.homepage.validators.MaxIdleTimeValidator(10080),
+            api.rooms.validators.MaxIdleTimeValidator(10080),
         ],
         default=1440,
     )
