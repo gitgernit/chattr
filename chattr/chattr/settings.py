@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'rest_framework',
 ] + [
     'api.homepage.apps.ApiHomepageConfig',
-    'chat.apps.ChatConfig',
     'homepage.apps.HomepageConfig',
 ]
 
