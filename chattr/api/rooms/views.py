@@ -1,5 +1,6 @@
 __all__ = []
 
+import http
 import uuid
 
 import django.core.cache
@@ -35,4 +36,7 @@ class GetRoom(rest_framework.views.APIView):
                 },  # Can later be changed to full link
             )
 
-        return rest_framework.response.Response(serializer.errors, status=400)
+        return rest_framework.response.Response(
+            serializer.errors,
+            status=http.HTTPStatus.BAD_REQUEST,
+        )
