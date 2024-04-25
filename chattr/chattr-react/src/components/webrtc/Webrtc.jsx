@@ -27,8 +27,6 @@ let init = async () => {
   document.getElementById('user-1').srcObject = localStream
 }
 
-init()
-
 const activateChat = () => {
   document.querySelector('.offers').style.display = 'none';
   document.querySelector('.chat').style.display = 'flex';
@@ -106,6 +104,8 @@ const acceptAnswer = async () => {
 }
 
 function Webrtc() {
+  init()
+
   return (
     <div className="webrtc">
       <div className="videos">
