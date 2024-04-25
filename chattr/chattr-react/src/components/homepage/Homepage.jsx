@@ -62,8 +62,8 @@ const fetchRoomUrl = async () => {
         `${window.location.href}api/homepage/get_room`,
         {
           params: {
-            max_users: max_users ? max_users : 24,
-            max_idle_time: max_idle_time ? max_idle_time : 1440,
+            max_users: max_users || 24,
+            max_idle_time: max_idle_time || 1440,
           }
         }
       );
