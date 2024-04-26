@@ -3,13 +3,13 @@
 from django.db import migrations
 from django.db import models
 
-import api.homepage.validators
+import api.rooms.validators
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api_homepage', '0002_alter_room_max_time_alter_room_max_users'),
+        ('api_rooms', '0002_alter_room_max_time_alter_room_max_users'),
     ]
 
     operations = [
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             field=models.IntegerField(
                 default=1440,
                 validators=[
-                    api.homepage.validators.MaxIdleTimeValidator(10080)
+                    api.rooms.validators.MaxIdleTimeValidator(10080)
                 ],
                 verbose_name='максимальное время бездействия комнаты',
             ),
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
             name='max_users',
             field=models.IntegerField(
                 default=24,
-                validators=[api.homepage.validators.MaxUsersValidator(100)],
+                validators=[api.rooms.validators.MaxUsersValidator(100)],
                 verbose_name='максимальное количество пользователей',
             ),
         ),

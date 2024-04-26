@@ -3,13 +3,13 @@ __all__ = []
 import django.urls
 import rest_framework.urls
 
-import api.homepage.urls
+import api.rooms.urls
 
 app_name = 'api'
 
 urlpatterns = [
     rest_framework.urls.path(
-        'homepage/',
-        django.urls.include(api.homepage.urls),
+        'rooms/',
+        django.urls.include(api.rooms.urls),
     ),
 ]

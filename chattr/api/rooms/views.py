@@ -1,20 +1,21 @@
 __all__ = []
 
+import http
 import uuid
 
 import django.core.cache
 import rest_framework.response
 import rest_framework.views
 
-import api.homepage.models
-import api.homepage.serializers
+import api.rooms.models
+import api.rooms.serializers
 
 redis_client = django.core.cache.cache.client.get_client()
 
 
-class NewRoom(rest_framework.views.APIView):
+class GetRoom(rest_framework.views.APIView):
     def get(self, request):
-        serializer = api.homepage.serializers.RoomSettingsSerializer(
+        serializer = api.rooms.serializers.RoomSettingsSerializer(
             data=request.query_params,
         )
 
@@ -22,7 +23,7 @@ class NewRoom(rest_framework.views.APIView):
             room_settings = serializer.validated_data
             room_id_parse = uuid.uuid4().hex
 
-            new_room = api.homepage.models.Room(
+            new_room = api.rooms.models.Room(
                 room_id=room_id_parse,
                 max_users=room_settings['max_users'],
                 max_idle_time=room_settings['max_idle_time'],
@@ -35,4 +36,7 @@ class NewRoom(rest_framework.views.APIView):
                 },  # Can later be changed to full link
             )
 
-        return rest_framework.response.Response(serializer.errors, status=400)
+        return rest_framework.response.Response(
+            serializer.errors,
+            status=http.HTTPStatus.BAD_REQUEST,
+        )

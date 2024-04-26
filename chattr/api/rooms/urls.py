@@ -2,14 +2,14 @@ __all__ = []
 
 import rest_framework.urls
 
-import api.homepage.views
+import api.rooms.views
 
-app_name = 'api-homepage'
+app_name = 'api-rooms'
 
 urlpatterns = [
     rest_framework.urls.path(
         'get_room/',
-        api.homepage.views.NewRoom.as_view(),
+        api.rooms.views.GetRoom.as_view(),
         name='get-room',
     ),
 ]
