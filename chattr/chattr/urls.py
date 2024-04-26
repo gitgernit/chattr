@@ -3,10 +3,10 @@ __all__ = []
 import django.contrib.admin
 import django.urls
 import django.views.generic
-import rooms.urls
 
 import api.urls
 import homepage.urls
+import rooms.urls
 
 urlpatterns = [
     django.urls.path(
