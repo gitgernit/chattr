@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
 ] + [
     'api.rooms.apps.ApiHomepageConfig',
+    'core.apps.CoreConfig',
     'homepage.apps.HomepageConfig',
+    'rooms.apps.RoomsConfig',
 ]
 
 MIDDLEWARE = [

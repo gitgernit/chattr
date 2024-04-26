@@ -16,21 +16,16 @@ class ChattrUser(django.contrib.auth.models.AbstractUser):
         name='username',
         verbose_name='username',
         max_length=255,
+        db_index=True,
     )
-
-
-class Message(django.db.models.Model):
-    sender = django.db.models.ForeignKey(
-        ChattrUser,
-        name='sender',
-        on_delete=django.db.models.CASCADE,
-        related_name='sent_messages',
+    room_name = django.db.models.CharField(
+        name='room_name',
+        verbose_name='room name',
+        max_length=255,
+        unique=True,
     )
-    ws_group = django.db.models.CharField(
-        name='ws_group',
-        verbose_name='websocket group',
-    )
-    content = django.db.models.TextField(
-        name='content',
-        verbose_name='content',
+    send_time = django.db.models.DateTimeField(
+        name='send_time',
+        verbose_name='send time',
+        auto_now_add=True,
     )

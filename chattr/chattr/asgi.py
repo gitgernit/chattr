@@ -2,21 +2,26 @@ __all__ = []
 
 import os
 
-from channels.auth import AuthMiddlewareStack
-from channels.routing import ProtocolTypeRouter
-from channels.routing import URLRouter
-from channels.security.websocket import AllowedHostsOriginValidator
-from django.core.asgi import get_asgi_application
+import channels.auth
+import channels.routing
+import channels.security.websocket
+import django.core.asgi
+
+import rooms.routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chattr.settings')
 
-django_asgi_app = get_asgi_application()
+django_asgi_app = django.core.asgi.get_asgi_application()
 
-application = ProtocolTypeRouter(
+application = channels.routing.ProtocolTypeRouter(
     {
         'http': django_asgi_app,
-        'websocket': AllowedHostsOriginValidator(
-            AuthMiddlewareStack(URLRouter([])),
+        'websocket': channels.security.websocket.AllowedHostsOriginValidator(
+            channels.auth.AuthMiddlewareStack(
+                channels.routing.URLRouter(
+                    rooms.routing.websocket_urlpatterns,
+                ),
+            ),
         ),
     },
 )

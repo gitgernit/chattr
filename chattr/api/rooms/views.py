@@ -9,12 +9,13 @@ import rest_framework.views
 
 import api.rooms.models
 import api.rooms.serializers
+import rooms.models
 
 redis_client = django.core.cache.cache.client.get_client()
 
 
-class GetRoom(rest_framework.views.APIView):
-    def get(self, request):
+class CreateRoom(rest_framework.views.APIView):
+    def post(self, request):
         serializer = api.rooms.serializers.RoomSettingsSerializer(
             data=request.query_params,
         )
@@ -40,3 +41,24 @@ class GetRoom(rest_framework.views.APIView):
             serializer.errors,
             status=http.HTTPStatus.BAD_REQUEST,
         )
+
+
+class GetMessages(rest_framework.views.APIView):
+    def get(self, request):
+        ws_group = request.query_params['ws_group']
+        if not ws_group:
+            return rest_framework.response.Response(
+                {
+                    'error': 'ws_group is required',
+                },
+                status=http.HTTPStatus.BAD_REQUEST,
+            )
+
+        messages = rooms.models.Message.objects.filter(
+            ws_group=ws_group,
+        )
+        serializer = api.rooms.serializers.GetMessagesSerializer(
+            messages,
+            many=True,
+        )
+        return rest_framework.response.Response(serializer.data)

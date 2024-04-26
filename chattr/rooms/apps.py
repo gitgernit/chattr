@@ -1,6 +1,8 @@
-from django.apps import AppConfig
+__all__ = []
+
+import django.apps
 
 
-class RoomsConfig(AppConfig):
+class RoomsConfig(django.apps.AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'rooms'
