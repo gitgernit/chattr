@@ -1,3 +1,5 @@
+__all__ = []
+
 import os
 
 import django.core.wsgi

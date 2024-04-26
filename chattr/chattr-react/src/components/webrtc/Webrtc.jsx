@@ -21,13 +21,11 @@ let init = async () => {
   localStream = await navigator.mediaDevices.getUserMedia(
     {
       video: true,
-      audio: false,
+      audio: true,
     }
   )
   document.getElementById('user-1').srcObject = localStream
 }
-
-init()
 
 const activateChat = () => {
   document.querySelector('.offers').style.display = 'none';
@@ -80,6 +78,7 @@ const generateOffer = async () => {
   let sdp_offer = await peerConnection.createOffer(
     {
       offerToReceiveVideo: true,
+      offerToReceiveAudio: true,
     }
   )
   await peerConnection.setLocalDescription(sdp_offer)
@@ -105,14 +104,26 @@ const acceptAnswer = async () => {
   await peerConnection.setRemoteDescription(answer)
 }
 
+const mute_mic = () => {
+  let enabled = localStream.getAudioTracks()[0].enabled
+  localStream.getAudioTracks()[0].enabled = !enabled
+}
+
+const disable_video = () => {
+  let enabled = localStream.getVideoTracks()[0].enabled
+  localStream.getVideoTracks()[0].enabled = !enabled
+}
+
 function Webrtc() {
+  init()
+
   return (
     <div className="webrtc">
       <div className="videos">
         <video className="video-stream" id="user-1"
-               autoPlay playsInline/>
+               autoPlay muted playsInline/>
         <video className="video-stream" id="user-2"
-               autoPlay playsInline/>
+               autoPlay playsInline />
       </div>
       <div className="offers">
         <textarea id="sdp-area" placeholder="SDP (offer \ answer)"></textarea>
@@ -122,9 +133,11 @@ function Webrtc() {
         </div>
       </div>
       <div className="chat">
-        <textarea id="chat-area" placeholder="Messages will be here" readOnly />
-        <input type="text" id="message-area" placeholder="Type your message" />
+        <textarea id="chat-area" placeholder="Messages will be here" readOnly/>
+        <input type="text" id="message-area" placeholder="Type your message"/>
         <button onClick={sendMessage}>Send</button>
+        <button onClick={mute_mic}>Mute mic</button>
+        <button onClick={disable_video}>Disable video</button>
       </div>
     </div>
   )

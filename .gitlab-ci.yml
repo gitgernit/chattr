@@ -46,11 +46,12 @@ djlint:
 
 eslint:
   stage: linting
-  image: registry.gitlab.com/pipeline-components/eslint:latest
+  image: node
   before_script:
     - cd chattr/chattr-react
+    - npm install
   script:
-    - eslint --ext .jsx
+    - npm run lint
 
 
 sort-requirements:
@@ -93,4 +94,4 @@ api_homepage:
     - cd chattr
   script:
     - python3 manage.py migrate
-    - python3 manage.py test api/homepage
+    - python3 manage.py test api/rooms

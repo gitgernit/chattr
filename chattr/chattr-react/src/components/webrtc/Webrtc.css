@@ -8,12 +8,12 @@
   gap: 25px;
 }
 
-.videos {
+.webrtc .videos {
   display: flex;
   gap: 50px;
 }
 
-.video-stream {
+.webrtc .video-stream {
   border: 2px solid var(--border);
   border-radius: 5px;
   width: 350px;
@@ -21,22 +21,22 @@
   object-fit: fill;
 }
 
-.offers {
+.webrtc .offers {
   display: flex;
   flex-direction: column;
   width: 250px;
 }
 
-.offers .sdp-buttons {
+.webrtc .offers .sdp-buttons {
   display: flex;
 }
 
-.offers .sdp-buttons > button {
+.webrtc .offers .sdp-buttons > button {
   flex: 1;
   height: 35px;
 }
 
-.chat {
+.webrtc .chat {
   display: none;
   position: absolute;
   flex-direction: column;
@@ -44,6 +44,6 @@
   width: 250px;
 }
 
-.chat #chat-area {
+.webrtc .chat #chat-area {
   height: 100px;
 }
