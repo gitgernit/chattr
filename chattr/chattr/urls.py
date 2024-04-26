@@ -1,3 +1,5 @@
+__all__ = []
+
 import django.contrib.admin
 import django.urls
 

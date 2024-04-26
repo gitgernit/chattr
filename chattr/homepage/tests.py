@@ -1,9 +1,9 @@
+__all__ = []
+
 import http
 
 import django.test
 import django.urls
-
-__all__ = []
 
 
 class HomepageStaticURLTests(django.test.TestCase):

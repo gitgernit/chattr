@@ -1,9 +1,10 @@
-import django.apps
-
 __all__ = []
+
+import django.apps
 
 
 class HomepageConfig(django.apps.AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'homepage'
-    verbose_name = 'Главная страница'
+    label = 'homepage'
+    verbose_name = 'Homepage'

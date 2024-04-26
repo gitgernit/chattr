@@ -1,18 +1,17 @@
+__all__ = []
+
 import os
-from pathlib import Path
+import pathlib
 
 import dotenv
 import fakeredis
 
-# Build paths inside the chattr like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
 dotenv.load_dotenv()
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', default='NOTSET')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 true_values = ('true', 't', 'y', '1')
 DEBUG = os.getenv('DJANGO_DEBUG', default='False').lower() in true_values
 
@@ -30,17 +29,18 @@ REDIS_HOST = os.getenv('REDIS_HOST', default='127.0.0.1')
 REDIS_PORT = os.getenv('REDIS_PORT', default='6379')
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
 
-# Application definition
-
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'rest_framework',
 ] + [
+    'api.homepage.apps.ApiHomepageConfig',
     'homepage.apps.HomepageConfig',
 ]
 
@@ -73,8 +73,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chattr.wsgi.application'
+ASGI_APPLICATION = 'chattr.asgi.application'
 
-# Database
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}'],
+            'symmetric_encryption_keys': [SECRET_KEY],
+        },
+    },
+}
 
 DATABASES = {
     'default': {
@@ -99,12 +108,13 @@ CACHES = {
     },
 }
 
+
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS = {
     'host': REDIS_HOST,
     'port': REDIS_PORT,
     'password': REDIS_PASSWORD,
-    'db': 3,
+    'db': 1,
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -131,8 +141,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -141,14 +149,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-
 STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static/'
 
 STATICFILES_DIRS = [BASE_DIR / 'chattr-react/dist/static/']
-
-# Default primary key field type
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -5,4 +5,6 @@ exclude =
     node_modules
 max-complexity = 10
 import-order-style = google
-application_import_names = chattr, api, homepage
+application_import_names = api, chattr, core, homepage
+per-file-ignores =
+    chattr\asgi.py:E402
