@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 ] + [
     'api.rooms.apps.ApiHomepageConfig',
     'homepage.apps.HomepageConfig',
+    'rooms.apps.RoomsConfig',
 ]
 
 MIDDLEWARE = [

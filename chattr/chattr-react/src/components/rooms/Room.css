@@ -1,0 +1,19 @@
+.room {
+  display: flex;
+  flex: 1;
+}
+
+.room .videos {
+  display: flex;
+  flex-direction: column;
+}
+
+.room .videos .tracks {
+  display: grid;
+  overflow: scroll;
+}
+
+.room .chat {
+  display: flex;
+  flex-direction: column;
+}
