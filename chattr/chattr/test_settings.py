@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
 ] + [
-    'api.homepage.apps.ApiHomepageConfig',
+    'api.rooms.apps.ApiHomepageConfig',
     'homepage.apps.HomepageConfig',
 ]
 

@@ -87,5 +87,5 @@ api_homepage:
     - cd chattr
   script:
     - python3 manage.py migrate
-    - python3 manage.py test api/homepage
+    - python3 manage.py test api/rooms
 

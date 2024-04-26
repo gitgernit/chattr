@@ -59,11 +59,11 @@ const fetchRoomUrl = async () => {
       const max_users = localStorage.getItem('maxUsers')
       const max_idle_time = localStorage.getItem('maxIdleTime')
       const response = await axios.get(
-        `${window.location.href}api/homepage/get_room`,
+        `${window.location.href}api/rooms/get_room`,
         {
           params: {
-            max_users: max_users ? max_users : 24,
-            max_idle_time: max_idle_time ? max_idle_time : 1440,
+            max_users: max_users || 24,
+            max_idle_time: max_idle_time || 1440,
           }
         }
       );

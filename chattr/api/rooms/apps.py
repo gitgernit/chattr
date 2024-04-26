@@ -5,6 +5,6 @@ from django.apps import AppConfig
 
 class ApiHomepageConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'api.homepage'
-    label = 'api_homepage'
-    verbose_name = 'Homepage usage'
+    name = 'api.rooms'
+    label = 'api_rooms'
+    verbose_name = 'Room-control'
