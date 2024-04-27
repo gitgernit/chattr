@@ -6,17 +6,15 @@ import core.models
 
 
 class Message(django.db.models.Model):
-    sender = django.db.models.ForeignKey(
-        core.models.ChattrUser,
-        name='sender',
-        on_delete=django.db.models.CASCADE,
-        related_name='sent_messages',
+    sender_id = django.db.models.CharField(
+        verbose_name='ID of message sender'
+    )
+    sender_name = django.db.models.CharField(
+        verbose_name='name of message sender'
     )
     ws_group = django.db.models.CharField(
-        name='ws_group',
         verbose_name='websocket group',
     )
     content = django.db.models.TextField(
-        name='content',
         verbose_name='content',
     )

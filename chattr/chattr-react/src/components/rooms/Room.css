@@ -1,19 +1,172 @@
 .room {
   display: flex;
-  flex: 1;
+  flex-grow: 1;
+  flex-basis: 0;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  gap: 30px;
+  height: 20%;
 }
 
 .room .videos {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--border);
+  height: 95%;
+  width: 45%;
+  gap: 5px;
 }
 
 .room .videos .tracks {
-  display: grid;
-  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: safe center;
+  height: 80%;
+  max-height: 600px;
+  width: 90%;
+  padding: 20px;
+  gap: 20px;
+  border: 2px solid red;
+  overflow-y: auto;
+}
+
+.room .videos .tracks .video-stream {
+  height: 30%;
+  width: 45%;
+  object-fit: fill;
+  border: 2px solid red;
+}
+
+.room .videos .video-inputs {
+  border: 2px solid red;
 }
 
 .room .chat {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid var(--border);
+  border-radius: 5px;
+  height: 95%;
+  width: 75%;
+  gap: 5px;
+}
+
+.room .chat .messages {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  max-height: 600px;
+  width: 90%;
+  padding: 20px;
+  gap: 1px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  background-color: var(--element-bg-darker);
+  overflow-y: auto;
+}
+
+.room .chat .messages .message {
+}
+
+.room .chat .chat-inputs {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 20px;
+  height: 40px;
+  width: 90%;
+  padding: 0 20px;
+  border-radius: 5px;
+}
+
+.room .chat .chat-inputs input {
+  font-family: 'JetBrains Mono', sans-serif;
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  color: var(--text);
+  background-color: var(--element-bg);
+  padding-left: 3px;
+  overflow: hidden;
+  width: 90%;
+}
+
+.room .chat .chat-inputs img {
+  font-family: 'JetBrains Mono', sans-serif;
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  color: var(--text);
+  background-color: var(--element-bg);
+  overflow: hidden;
+  width: 30px;
+  padding: 5px;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.username-modal {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  min-width: 350px;
+  max-width: 40%;
+  min-height: 100px;
+  max-height: 20%;
+  height: 100%;
+  padding: 20px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  background-color: var(--bg);
+  overflow: hidden;
+  outline: none;
+}
+
+.username-modal .input-wrapper {
+  display: flex;
+  gap: 2px;
+  margin-top: 5%;
+  flex-direction: column;
+  width: 60%;
+}
+
+.username-modal .input-wrapper input {
+  font-family: 'JetBrains Mono', sans-serif;
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  color: var(--text);
+  background-color: var(--element-bg);
+  padding-left: 3px;
+  overflow: hidden
+}
+
+.username-modal .input-wrapper button {
+  font-family: 'JetBrains Mono', sans-serif;
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  color: var(--text);
+  background-color: var(--element-bg);
+  padding-left: 3px;
+  overflow: hidden
 }

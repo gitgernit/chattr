@@ -119,11 +119,12 @@ function Webrtc() {
 
   return (
     <div className="webrtc">
+
       <div className="videos">
         <video className="video-stream" id="user-1"
                autoPlay muted playsInline/>
         <video className="video-stream" id="user-2"
-               autoPlay playsInline />
+               autoPlay playsInline/>
       </div>
       <div className="offers">
         <textarea id="sdp-area" placeholder="SDP (offer \ answer)"></textarea>

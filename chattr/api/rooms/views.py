@@ -15,7 +15,7 @@ redis_client = django.core.cache.cache.client.get_client()
 
 
 class CreateRoom(rest_framework.views.APIView):
-    def post(self, request):
+    def get(self, request):
         serializer = api.rooms.serializers.RoomSettingsSerializer(
             data=request.query_params,
         )

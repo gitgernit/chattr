@@ -143,7 +143,7 @@ function Homepage() {
             <Typewriter
               options={{
                 strings: [
-                  'Instant chatrooms',
+                  'Instant rooms',
                   'No registration required',
                   'No history saved',
                 ],
