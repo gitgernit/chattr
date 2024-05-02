@@ -41,7 +41,8 @@ const copyLink = async () => {
   const theme = localStorage.getItem('theme')
 
   try {
-    await navigator.clipboard.writeText(textbox.innerHTML);
+    let link =  'http://' + 'localhost:8000/rooms/' + textbox.innerHTML + '/';
+    await navigator.clipboard.writeText(link);
     toast.success('Link saved to clipboard', {
       ...toastConfig,
       theme: theme,

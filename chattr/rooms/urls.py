@@ -9,7 +9,7 @@ app_name = 'rooms'
 
 urlpatterns = [
     django.urls.path(
-        '<int:room_id>/',
+        '<str:room_id>/',
         rooms.views.RoomView.as_view(),
         name='room',
     ),

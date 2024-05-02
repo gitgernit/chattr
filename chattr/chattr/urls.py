@@ -18,6 +18,10 @@ urlpatterns = [
         django.urls.include(rooms.urls),
     ),
     django.urls.path(
+        'webrtc/',
+        django.views.generic.TemplateView.as_view(template_name='index.html'),
+    ),
+    django.urls.path(
         'api/',
         django.urls.include(api.urls),
     ),
