@@ -1,11 +1,11 @@
 __all__ = []
 
 import os
-from pathlib import Path
+import pathlib
 
 import dotenv
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
 dotenv.load_dotenv()
 
@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
 ] + [
     'api.rooms.apps.ApiHomepageConfig',
+    'core.apps.CoreConfig',
     'homepage.apps.HomepageConfig',
+    'rooms.apps.RoomsConfig',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +106,14 @@ CACHES = {
             'PASSWORD': REDIS_PASSWORD,
         },
     },
+}
+
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS = {
+    'host': REDIS_HOST,
+    'port': REDIS_PORT,
+    'password': REDIS_PASSWORD,
+    'db': 1,
 }
 
 AUTH_PASSWORD_VALIDATORS = [

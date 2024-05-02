@@ -1,12 +1,12 @@
 __all__ = []
 
 import os
-from pathlib import Path
+import pathlib
 
 import dotenv
 import fakeredis
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
 dotenv.load_dotenv()
 
@@ -25,20 +25,24 @@ DB_NAME = os.getenv('POSTGRES_NAME', default='postgres')
 DB_USER = os.getenv('POSTGRES_USER', default='testuser')
 DB_PASSWORD = os.getenv('POSTGRES_PASSWORD', default='testpassword')
 
-REDIS_HOST = os.getenv('REDIS_HOST', default='127.0.0.1:6379')
+REDIS_HOST = os.getenv('REDIS_HOST', default='127.0.0.1')
+REDIS_PORT = os.getenv('REDIS_PORT', default='6379')
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'rest_framework',
 ] + [
     'api.rooms.apps.ApiHomepageConfig',
     'homepage.apps.HomepageConfig',
+    'rooms.apps.RoomsConfig',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +74,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chattr.wsgi.application'
+ASGI_APPLICATION = 'chattr.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}'],
+            'symmetric_encryption_keys': [SECRET_KEY],
+        },
+    },
+}
 
 DATABASES = {
     'default': {
@@ -92,6 +107,15 @@ CACHES = {
             },
         },
     },
+}
+
+
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS = {
+    'host': REDIS_HOST,
+    'port': REDIS_PORT,
+    'password': REDIS_PASSWORD,
+    'db': 1,
 }
 
 AUTH_PASSWORD_VALIDATORS = [

@@ -53,6 +53,13 @@ eslint:
   script:
     - npm run lint
 
+
+sort-requirements:
+  stage: linting
+  script:
+    - cd requirements
+    - sort-requirements -c prod.txt lint.txt test.txt
+
 frontend:
   stage: building
   image: node
@@ -88,4 +95,3 @@ api_homepage:
   script:
     - python3 manage.py migrate
     - python3 manage.py test api/rooms
-

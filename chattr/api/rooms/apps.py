@@ -1,9 +1,9 @@
 __all__ = []
 
-from django.apps import AppConfig
+import django.apps
 
 
-class ApiHomepageConfig(AppConfig):
+class ApiHomepageConfig(django.apps.AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'api.rooms'
     label = 'api_rooms'

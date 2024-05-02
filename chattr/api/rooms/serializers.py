@@ -4,6 +4,7 @@ import django.db.models.fields
 import rest_framework.serializers
 
 import api.rooms.models
+import rooms.models
 
 
 class ModelSerializerDefaultsMixin:
@@ -25,3 +26,12 @@ class RoomSettingsSerializer(
     class Meta:
         model = api.rooms.models.Room
         fields = ('max_users', 'max_idle_time')
+
+
+class GetMessagesSerializer(
+    ModelSerializerDefaultsMixin,
+    rest_framework.serializers.ModelSerializer,
+):
+    class Meta:
+        model = rooms.models.Message
+        fields = ('sender', 'ws_group', 'content')
