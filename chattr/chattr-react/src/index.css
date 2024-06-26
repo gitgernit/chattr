@@ -68,7 +68,7 @@ body.initial-load {
   color: var(--text);
 }
 
-input {
+input, textarea {
   font-family: 'JetBrains Mono', sans-serif;
   color: var(--text);
   border: 2px solid var(--border);
@@ -77,7 +77,7 @@ input {
   overflow: hidden;
 }
 
-input:focus {
+input:focus, textarea:focus {
   outline: none;
 }
 
@@ -95,6 +95,20 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield;
+}
+
+button {
+  font-family: 'JetBrains Mono', sans-serif;
+  background-color: var(--element-bg);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 3px;
+}
+
+button:active {
+  transition: 0s;
+  transform: scale(0.95);
+  background-color: var(--element-bg-darker);
 }
 
 .error-message {

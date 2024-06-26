@@ -1,6 +1,31 @@
 .crosschat {
   display: flex;
+  position: relative;
   flex: 1;
-  align-items: center;
   justify-content: center;
+}
+
+.crosschat .controls {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 20%;
+  height: 20%;
+  top: 30%;
+  gap: 2px;
+}
+
+.crosschat .controls .sdp-area {
+  height: 80%;
+  resize: none;
+}
+
+.crosschat .controls .sdp-buttons {
+  display: flex;
+  height: 20%;
+  gap: 2px;
+}
+
+.crosschat .controls .sdp-buttons > button {
+  flex: 1;
 }
