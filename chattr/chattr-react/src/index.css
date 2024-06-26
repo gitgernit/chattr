@@ -68,20 +68,23 @@ body.initial-load {
   color: var(--text);
 }
 
-.number-input {
+input {
   font-family: 'JetBrains Mono', sans-serif;
   color: var(--text);
   border: 2px solid var(--border);
   border-radius: 3px;
   background-color: var(--element-bg);
-  min-width: 40px;
-  max-width: 70px;
-  padding-left: 3px;
   overflow: hidden;
 }
 
-.number-input:focus {
+input:focus {
   outline: none;
+}
+
+.number-input {
+  min-width: 40px;
+  max-width: 70px;
+  padding-left: 3px;
 }
 
 input::-webkit-outer-spin-button,
