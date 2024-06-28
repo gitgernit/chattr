@@ -12,7 +12,8 @@ function Crosschat() {
         </div>
       </div>
       <div className="chat">
-        <textarea className="chat-area" readOnly/>
+        <textarea className="chat-area" readOnly
+                  placeholder="Messages will appear there!"/>
         <input type="text" id="message-input"/>
       </div>
     </div>
