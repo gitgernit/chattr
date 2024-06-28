@@ -75,6 +75,7 @@ input, textarea {
   border-radius: 3px;
   background-color: var(--element-bg);
   overflow: hidden;
+  padding-left: 3px;
 }
 
 input:focus, textarea:focus {
@@ -84,7 +85,6 @@ input:focus, textarea:focus {
 .number-input {
   min-width: 40px;
   max-width: 70px;
-  padding-left: 3px;
 }
 
 input::-webkit-outer-spin-button,

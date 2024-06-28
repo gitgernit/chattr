@@ -11,6 +11,10 @@ function Crosschat() {
           <button>Answer</button>
         </div>
       </div>
+      <div className="chat">
+        <textarea className="chat-area" readOnly/>
+        <input type="text" id="message-input"/>
+      </div>
     </div>
   )
 }
