@@ -20,6 +20,11 @@
   right: 5%;
 }
 
+#theme-button {
+  background-color: unset;
+  border: 0;
+}
+
 #theme-button:hover {
   filter: drop-shadow(0 0 10px var(--shadow));
 }
