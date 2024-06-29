@@ -1,4 +1,19 @@
 import './Crosschat.css'
+import {stunServers, createOffer} from './networking.js'
+
+const rtcConfiguration = {
+  iceServers: stunServers.map(server => ({urls: `stun:${server}`}))
+};
+
+let pc = new RTCPeerConnection(rtcConfiguration)
+
+async function offerButton() {
+  let sdpArea = document.getElementById('sdp-area')
+  let [offer, dc] = await createOffer(pc, 'ham')
+
+  sdpArea.textContent = offer.sdp
+}
+
 
 function Crosschat() {
   return (
@@ -7,8 +22,10 @@ function Crosschat() {
         <textarea className="sdp-area" id="sdp-area"
                   placeholder="Paste \ copy SDP"/>
         <div className="sdp-buttons">
-          <button>Offer</button>
-          <button>Answer</button>
+          <button id="offer-button"
+                  onClick={offerButton}>Offer
+          </button>
+          <button id="answer-button">Answer</button>
         </div>
       </div>
       <div className="chat">

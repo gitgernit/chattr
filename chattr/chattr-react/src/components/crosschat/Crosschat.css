@@ -6,7 +6,7 @@
 }
 
 .crosschat .controls {
-  display: none;
+  display: flex;
   position: absolute;
   flex-direction: column;
   width: 20%;
@@ -20,6 +20,11 @@
 .crosschat .controls .sdp-area {
   height: 80%;
   resize: none;
+  overflow-y: scroll;
+}
+
+.crosschat .controls .sdp-area::-webkit-scrollbar {
+  display: none;
 }
 
 .crosschat .controls .sdp-buttons {
@@ -33,7 +38,7 @@
 }
 
 .crosschat .chat {
-  display: flex;
+  display: none;
   position: absolute;
   flex-direction: column;
   gap: 5px;
