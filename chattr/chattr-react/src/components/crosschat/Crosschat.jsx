@@ -1,5 +1,5 @@
 import './Crosschat.css'
-import {stunServers, createOffer, createAnswer} from './networking.js'
+import {stunServers, createOffer, createAnswer, sendMessage} from './networking.js'
 
 const rtcConfiguration = {
   iceServers: stunServers.map(server => ({urls: `stun:${server}`})),
@@ -19,7 +19,9 @@ async function offerButton() {
 
 async function answerButton() {
   let sdpArea = document.getElementById('sdp-area')
-  dc = await createAnswer(pc, 'ham', sdpArea.value)
+  let pseudo_dc = await createAnswer(pc, 'ham', sdpArea.value)
+
+  dc = pseudo_dc ? pseudo_dc : dc
 
   pc.onicecandidate = (candidate) => {
     sdpArea.value = pc.localDescription.sdp
@@ -37,13 +39,16 @@ function Crosschat() {
                   onClick={offerButton}>Offer
           </button>
           <button id="answer-button"
-                  onClick={answerButton}>Answer</button>
+                  onClick={answerButton}>Answer
+          </button>
         </div>
       </div>
       <div className="chat">
-        <textarea className="chat-area" readOnly
+        <textarea className="chat-area" id="chat-area" readOnly
                   placeholder="Messages will appear there!"/>
-        <input type="text" id="message-input"/>
+        <input type="text"
+               onKeyDown={(event) => sendMessage(event, dc)}
+               id="message-input"/>
       </div>
     </div>
   )
