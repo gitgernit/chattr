@@ -1,19 +1,30 @@
 import './Crosschat.css'
-import {stunServers, createOffer} from './networking.js'
+import {stunServers, createOffer, createAnswer} from './networking.js'
 
 const rtcConfiguration = {
-  iceServers: stunServers.map(server => ({urls: `stun:${server}`}))
+  iceServers: stunServers.map(server => ({urls: `stun:${server}`})),
 };
 
 let pc = new RTCPeerConnection(rtcConfiguration)
+let dc
 
 async function offerButton() {
   let sdpArea = document.getElementById('sdp-area')
-  let [offer, dc] = await createOffer(pc, 'ham')
+  dc = await createOffer(pc, 'ham')
 
-  sdpArea.textContent = offer.sdp
+  pc.onicecandidate = (candidate) => {
+    sdpArea.value = pc.localDescription.sdp
+  }
 }
 
+async function answerButton() {
+  let sdpArea = document.getElementById('sdp-area')
+  dc = await createAnswer(pc, 'ham', sdpArea.value)
+
+  pc.onicecandidate = (candidate) => {
+    sdpArea.value = pc.localDescription.sdp
+  }
+}
 
 function Crosschat() {
   return (
@@ -25,7 +36,8 @@ function Crosschat() {
           <button id="offer-button"
                   onClick={offerButton}>Offer
           </button>
-          <button id="answer-button">Answer</button>
+          <button id="answer-button"
+                  onClick={answerButton}>Answer</button>
         </div>
       </div>
       <div className="chat">
