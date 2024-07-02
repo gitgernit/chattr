@@ -1,20 +1,28 @@
-import aiortc
+__all__ = []
 
 import asyncio
-import sys
 
-stun_servers = list(map(lambda x: aiortc.RTCIceServer('stun:' + x), [
-    'stun1.l.google.com:19302',
-    'stun2.l.google.com:19302',
-]))
+import aiortc
+
+stun_servers = list(
+    map(
+        lambda x: aiortc.RTCIceServer('stun:' + x),
+        [
+            'stun1.l.google.com:19302',
+            'stun2.l.google.com:19302',
+        ],
+    ),
+)
 
 
-def connected_handler():
+def connected_handler(dc):
     print('Datachannel open! (connected)')
+    dc.send('Hello, world!')
 
 
-def message_handler(message):
-    print(f'Recv: {message}')
+def message_handler(dc, message):
+    print(f'Received: {message}')
+    dc.send(message)
 
 
 async def create_offer(pc: aiortc.RTCPeerConnection, room):
@@ -22,20 +30,22 @@ async def create_offer(pc: aiortc.RTCPeerConnection, room):
     offer = await pc.createOffer()
     await pc.setLocalDescription(offer)
 
-    dc.on('open', connected_handler)
-    dc.on('message', message_handler)
+    dc.on('open', lambda: connected_handler(dc))
+    dc.on('message', lambda message: message_handler(dc, message))
 
 
 async def accept_answer(pc: aiortc.RTCPeerConnection, sdp):
-    await pc.setRemoteDescription(aiortc.RTCSessionDescription(type='answer', sdp=sdp))
+    await pc.setRemoteDescription(
+        aiortc.RTCSessionDescription(type='answer', sdp=sdp),
+    )
 
 
 async def main():
-    pc = aiortc.RTCPeerConnection(configuration=aiortc.RTCConfiguration(
-        iceServers=stun_servers,
-    ))
-    pc = aiortc.RTCPeerConnection()
-    pc.on('icecandidate', lambda x: print('ice!!', x))
+    pc = aiortc.RTCPeerConnection(
+        configuration=aiortc.RTCConfiguration(
+            iceServers=stun_servers,
+        ),
+    )
     await create_offer(pc, 'ham')
     await asyncio.sleep(1)
 
@@ -45,7 +55,7 @@ async def main():
 
     print('offer written')
 
-    await asyncio.sleep(15)
+    await asyncio.sleep(20)
 
     with open('answer.txt', 'r') as answer_txt:
         sdp = ''.join(answer_txt.readlines())
