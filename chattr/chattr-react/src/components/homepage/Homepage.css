@@ -102,6 +102,8 @@
   padding: 10px;
   width: 30px;
   filter: var(--filtered-text);
+  background-color: unset;
+  border: 0;
 }
 
 .settings-modal #close-button:hover {

@@ -68,20 +68,23 @@ body.initial-load {
   color: var(--text);
 }
 
-.number-input {
+input, textarea {
   font-family: 'JetBrains Mono', sans-serif;
   color: var(--text);
   border: 2px solid var(--border);
   border-radius: 3px;
   background-color: var(--element-bg);
-  min-width: 40px;
-  max-width: 70px;
-  padding-left: 3px;
   overflow: hidden;
+  padding-left: 3px;
 }
 
-.number-input:focus {
+input:focus, textarea:focus {
   outline: none;
+}
+
+.number-input {
+  min-width: 40px;
+  max-width: 70px;
 }
 
 input::-webkit-outer-spin-button,
@@ -92,6 +95,20 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield;
+}
+
+button {
+  font-family: 'JetBrains Mono', sans-serif;
+  background-color: var(--element-bg);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 3px;
+}
+
+button:active {
+  transition: 0s;
+  transform: scale(0.95);
+  background-color: var(--element-bg-darker);
 }
 
 .error-message {
