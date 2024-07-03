@@ -1,28 +1,35 @@
 __all__ = []
 
 import asyncio
+import logging
+import pathlib
 
 import aiortc
 
-stun_servers = list(
-    map(
-        lambda x: aiortc.RTCIceServer('stun:' + x),
-        [
-            'stun1.l.google.com:19302',
-            'stun2.l.google.com:19302',
-        ],
-    ),
-)
+logging.basicConfig(level=logging.INFO)
+
+stun_servers = [
+    aiortc.RTCIceServer('stun:' + url)
+    for url in [
+        'stun1.l.google.com:19302',
+        'stun2.l.google.com:19302',
+    ]
+]
+
+OFFER_DESTINATION = 'offer.txt'
+ANSWER_DESTINATION = 'answer.txt'
 
 
 def connected_handler(dc):
-    print('Datachannel open! (connected)')
+    logging.info('Datachannel open! (connected)')
     dc.send('Hello, world!')
+    logging.debug('Sent initial message to datachannel')
 
 
 def message_handler(dc, message):
-    print(f'Received: {message}')
+    logging.info(f'Received: {message}')
     dc.send(message)
+    logging.debug(f'Echoed {message} to datachannel')
 
 
 async def create_offer(pc: aiortc.RTCPeerConnection, room):
@@ -47,21 +54,20 @@ async def main():
         ),
     )
     await create_offer(pc, 'ham')
-    await asyncio.sleep(1)
 
-    with open('offer.txt', 'w') as offer_txt:
+    with pathlib.Path(OFFER_DESTINATION).open('w') as offer_file:
         for line in pc.localDescription.sdp.split('\n'):
-            offer_txt.write(line)
+            offer_file.write(line)
 
-    print('offer written')
+    logging.info(f'Offer written to {OFFER_DESTINATION}')
+    await asyncio.sleep(0.1)  # to prevent logging.info to be outputted after input
+    input(f'Press enter when answer is in {ANSWER_DESTINATION}')
 
-    await asyncio.sleep(20)
-
-    with open('answer.txt', 'r') as answer_txt:
-        sdp = ''.join(answer_txt.readlines())
+    with pathlib.Path(ANSWER_DESTINATION).open('r') as answer_file:
+        sdp = answer_file.read()
         await accept_answer(pc, sdp)
 
-    print('answer read')
+    logging.debug('Answer read')
 
 
 if __name__ == '__main__':

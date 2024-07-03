@@ -3,6 +3,10 @@ venv
 .venv
 .env
 
+# Crosschat
+answer.txt
+offer.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
