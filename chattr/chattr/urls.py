@@ -3,6 +3,7 @@ __all__ = []
 import django.contrib.admin
 import django.urls
 import django.views.generic
+import crosschat.urls
 
 import api.urls
 import homepage.urls
@@ -20,6 +21,10 @@ urlpatterns = [
     django.urls.path(
         'webrtc/',
         django.views.generic.TemplateView.as_view(template_name='index.html'),
+    ),
+    django.urls.path(
+        'crosschat/',
+        django.urls.includeinclude(crosschat.urls),
     ),
     django.urls.path(
         'api/',
