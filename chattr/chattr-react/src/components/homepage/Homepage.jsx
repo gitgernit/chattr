@@ -1,7 +1,7 @@
 import './Homepage.css';
-import {useEffect, useState} from 'react';
-import {ToastContainer, toast, Flip} from 'react-toastify';
-import {useFormik} from 'formik';
+import { useEffect, useState } from 'react';
+import { ToastContainer, toast, Flip } from 'react-toastify';
+import { useFormik } from 'formik';
 import ReactModal from 'react-modal';
 import axios from "axios";
 import Typewriter from 'typewriter-effect';

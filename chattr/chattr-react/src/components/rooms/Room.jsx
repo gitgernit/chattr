@@ -1,9 +1,9 @@
-import {useEffect, useState} from 'react';
-import {useFormik} from 'formik';
+import { useEffect, useState } from 'react';
+import { useFormik } from 'formik';
 import ReactModal from 'react-modal';
 import * as Yup from 'yup';
 import './Room.css';
-import {establish_ws_connection, sendMessage} from './networking.jsx'
+import { establish_ws_connection, sendMessage } from './networking.jsx'
 import sendMsgUrl from '/src/assets/send-msg.svg';
 
 

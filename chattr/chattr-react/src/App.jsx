@@ -1,6 +1,6 @@
 import Webrtc from './components/webrtc/Webrtc.jsx'
 import Room from './components/rooms/Room.jsx'
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/shared/header/Header.jsx';
 import Footer from './components/shared/footer/Footer.jsx';
 import Homepage from './components/homepage/Homepage.jsx';
