@@ -1,26 +1,39 @@
 .room {
     display: flex;
+    position: relative;
     flex: 1;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-.room .inline-divs {
+.room .videos {
     display: flex;
     position: absolute;
     flex-wrap: wrap;
     justify-content: space-around;
-    border: 2px solid;
+    align-content: flex-start;
+    border: 2px solid var(--border);
     border-radius: 10px;
+    background-color: var(--element-bg-darker);
+    min-width: 300px;
+    min-height: 170px;
     width: 50%;
-    height: 50%;
-    top: 20%;
+    height: 100%;
+    max-width: 50%;
+    max-height: 100%;
     overflow-y: auto;
 }
 
-.filler {
-    width: 40%;
-    height: 50%;
-    border: 2px solid;
+.room .videos::-webkit-scrollbar {
+    display: none;
+}
+
+.room .videos > video {
+    background-color: var(--element-bg);
+    border: 2px solid var(--border);
     border-radius: 5px;
-    margin: 10px;
+    min-width: 250px;
+    min-height: 140px;
+    max-width: 350px;
+    max-height: 200px;
+    margin: 20px 0 20px 0;
 }
