@@ -6,6 +6,25 @@ function Room() {
       <div className="videos">
         <div className="videos-wrapper">
           <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
+          <video/>
         </div>
       </div>
       <div className="chat">
