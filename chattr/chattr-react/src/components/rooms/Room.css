@@ -3,6 +3,7 @@
     position: relative;
     flex: 1;
     justify-content: space-around;
+    min-width: 500px;
 }
 
 .room .videos {
@@ -32,14 +33,31 @@
     display: none;
 }
 
-.room .videos .videos-wrapper > video {
+.room .videos .videos-wrapper .user-video {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    min-width: 200px;
+    width: 45%;
+    margin: 20px 0 20px 0;
+}
+
+.room .videos .videos-wrapper .user-video > video{
     background-color: var(--element-bg);
     border: 2px solid var(--border);
     border-radius: 5px;
-    min-width: 200px;
     min-height: 125px;
-    width: 45%;
-    margin: 20px 0 20px 0;
+    width: 100%;
+}
+
+.room .videos .videos-wrapper .user-video .video-username {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    border: 2px var(--border) solid;
+    border-radius: 5px;
+    background-color: var(--element-bg);
+    padding: 2px 8px;
 }
 
 .room .chat {

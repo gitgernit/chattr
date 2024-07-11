@@ -5,18 +5,24 @@ function Room() {
     <div className="room">
       <div className="videos">
         <div className="videos-wrapper">
-          <video/>
-          <video/>
-          <video/>
-          <video/>
-          <video/>
-          <video/>
-          <video/>
-          <video/>
-          <video/>
-          <video/>
-          <video/>
-          <video/>
+          <div className="user-video">
+            <video/>
+            <span className="video-username">
+              undefined
+            </span>
+          </div>
+          <div className="user-video">
+            <video/>
+            <span className="video-username">
+              undefined
+            </span>
+          </div>
+          <div className="user-video">
+            <video/>
+            <span className="video-username">
+              undefined
+            </span>
+          </div>
         </div>
       </div>
       <div className="chat">
