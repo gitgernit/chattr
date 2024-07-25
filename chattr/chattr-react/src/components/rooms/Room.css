@@ -58,6 +58,7 @@
     border-radius: 5px;
     background-color: var(--element-bg);
     padding: 2px 8px;
+    transition: all 0.3s ease-in-out;
 }
 
 .room .chat {
@@ -67,4 +68,8 @@
     background-color: var(--element-bg-darker);
     width: 45%;
     height: inherit;
+}
+
+.videos, .videos *, .chat, .chat * {
+    transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
 }
