@@ -24,7 +24,7 @@ urlpatterns = [
     ),
     django.urls.path(
         'crosschat/',
-        django.urls.includeinclude(crosschat.urls),
+        django.urls.include(crosschat.urls),
     ),
     django.urls.path(
         'api/',
