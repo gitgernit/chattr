@@ -16,7 +16,8 @@
 }
 
 input, button, span, .Toastify__toast {
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out,
+  border 0.3s ease-in-out
 }
 
 body {
@@ -88,12 +89,12 @@ input:focus, textarea:focus {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }
 
 button {
