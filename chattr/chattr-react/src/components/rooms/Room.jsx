@@ -3,7 +3,16 @@ import { User } from './User.js';
 import './Room.css';
 
 function Room() {
-  const [users, setUsers] = useState([new User('you')]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    let clientUser = new User('you')
+    setUsers(existing_users => [...existing_users, clientUser])
+    
+    return () => {
+      setUsers(existing_users => [...existing_users.filter(user => user.name !== 'you')]);
+    }
+  }, [])
 
   return (
     <div className="room">
