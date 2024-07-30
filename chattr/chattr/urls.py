@@ -1,29 +1,37 @@
 __all__ = []
 
+import django.contrib.admin
+import django.urls
+import django.views.generic
 import crosschat.urls
-from django.contrib import admin
-from django.urls import include
-from django.urls import path
 
 import api.urls
 import homepage.urls
+import rooms.urls
 
 urlpatterns = [
-    path(
+    django.urls.path(
         '',
-        include(homepage.urls),
+        django.urls.include(homepage.urls),
     ),
-    path(
+    django.urls.path(
+        'rooms/',
+        django.urls.include(rooms.urls),
+    ),
+    django.urls.path(
+        'webrtc/',
+        django.views.generic.TemplateView.as_view(template_name='index.html'),
+    ),
+    django.urls.path(
         'crosschat/',
-        include(crosschat.urls),
+        django.urls.include(crosschat.urls),
     ),
-    path(
+    django.urls.path(
         'api/',
-        include(api.urls),
+        django.urls.include(api.urls),
     ),
-    path(
+    django.urls.path(
         'admin/',
-        admin.site.urls,
-        name='admin',
+        django.contrib.admin.site.urls,
     ),
 ]

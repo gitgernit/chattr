@@ -1,7 +1,7 @@
 import './Homepage.css';
-import {useEffect, useState} from 'react';
-import {ToastContainer, toast, Flip} from 'react-toastify';
-import {useFormik} from 'formik';
+import { useEffect, useState } from 'react';
+import { ToastContainer, toast, Flip } from 'react-toastify';
+import { useFormik } from 'formik';
 import ReactModal from 'react-modal';
 import axios from "axios";
 import Typewriter from 'typewriter-effect';
@@ -41,7 +41,8 @@ const copyLink = async () => {
   const theme = localStorage.getItem('theme')
 
   try {
-    await navigator.clipboard.writeText(textbox.innerHTML);
+    let link =  'http://' + 'localhost:8000/rooms/' + textbox.innerHTML + '/';
+    await navigator.clipboard.writeText(link);
     toast.success('Link saved to clipboard', {
       ...toastConfig,
       theme: theme,
@@ -138,28 +139,30 @@ function Homepage() {
   return (
     <>
       <div className="homepage">
-        <div className="typewriter">
-          <Typewriter
-            options={{
-              strings: [
-                'Instant chatrooms',
-                'No registration required',
-                'No history saved',
-              ],
-              delay: 100,
-              autoStart: true,
-              pauseFor: 5000,
-              loop: true,
-            }}
-          />
-        </div>
-        <div className="link-generator">
+        <div className="middle-wrapper">
+          <div className="typewriter">
+            <Typewriter
+              options={{
+                strings: [
+                  'Instant rooms',
+                  'No registration required',
+                  'No history saved',
+                ],
+                delay: 100,
+                autoStart: true,
+                pauseFor: 5000,
+                loop: true,
+              }}
+            />
+          </div>
+          <div className="link-generator">
           <span id="link-textbox"
                 onClick={copyLink}/>
-          <button id="link-settings" onClick={openModal}>
-            <img src={cogsUrl} alt="Modal with room settings"
-                 id="settings-img"/>
-          </button>
+            <button id="link-settings" onClick={openModal}>
+              <img src={cogsUrl} alt="Modal with room settings"
+                   id="settings-img"/>
+            </button>
+          </div>
         </div>
         <ToastContainer/>
       </div>

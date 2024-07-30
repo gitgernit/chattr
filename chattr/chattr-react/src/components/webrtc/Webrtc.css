@@ -1,0 +1,49 @@
+.webrtc {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  width: 100%;
+  gap: 25px;
+}
+
+.webrtc .videos {
+  display: flex;
+  gap: 50px;
+}
+
+.webrtc .video-stream {
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  width: 350px;
+  height: 250px;
+  object-fit: fill;
+}
+
+.webrtc .offers {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+.webrtc .offers .sdp-buttons {
+  display: flex;
+}
+
+.webrtc .offers .sdp-buttons > button {
+  flex: 1;
+  height: 35px;
+}
+
+.webrtc .chat {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  top: 300px;
+  width: 250px;
+}
+
+.webrtc .chat #chat-area {
+  height: 100px;
+}

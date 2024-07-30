@@ -1,4 +1,4 @@
-import {activateChat} from './miscallenous.js'
+import { activateChat } from './miscallenous.js'
 
 const stunServers = [
   'stun1.l.google.com:19302',

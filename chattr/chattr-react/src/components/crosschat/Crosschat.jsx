@@ -1,5 +1,5 @@
 import './Crosschat.css'
-import {stunServers, createOffer, createAnswer, sendMessage} from './networking.js'
+import { stunServers, createOffer, createAnswer, sendMessage } from './networking.js'
 
 const rtcConfiguration = {
   iceServers: stunServers.map(server => ({urls: `stun:${server}`})),

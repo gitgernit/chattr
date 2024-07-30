@@ -5,6 +5,7 @@ exclude =
     node_modules
 max-complexity = 10
 import-order-style = google
-application_import_names = api, chat, chattr, homepage
-per-file-ignores=
+application_import_names = api, chattr, core, homepage, rooms
+per-file-ignores =
     chattr\asgi.py:E402
+ignore-django-orm-queries-complexity = True
