@@ -1,18 +1,13 @@
-import { useState, useEffect } from 'react';
-import { User } from './User.js';
+import { useEffect, useState } from 'react';
+import { loadClientUser } from './userManagement.js';
 import './Room.css';
 
 function Room() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    let clientUser = new User('you')
-    setUsers(existing_users => [...existing_users, clientUser])
-    
-    return () => {
-      setUsers(existing_users => [...existing_users.filter(user => user.name !== 'you')]);
-    }
-  }, [])
+    return loadClientUser(setUsers);
+  }, []);
 
   return (
     <div className="room">
@@ -20,7 +15,7 @@ function Room() {
         <div className="videos-wrapper">
           {users.map((user) => (
             <div key={user.name} className="user-video">
-              <video />
+              <video/>
               <span className="video-username">
                 {user.name}
               </span>
